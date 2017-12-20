@@ -1,0 +1,22 @@
+dist: trusty
+
+
+language: node_js
+node_js:
+- 9.3.0
+
+cache:
+  directories:
+  - node_modules
+
+install:
+- npm install
+
+script:
+- npm run lint
+- npm test
+
+notifications:
+  slack:
+    rooms:
+      secure: eO4RBCdi33OuAt/EqOs5IAycfsazk89P2lbShMyPg1NczIL/q/Qvk+bjaVRxrXiWBgO3jVcCsi79s8naqSSMUt/GWR14grJP6RQUto6xLM2GJJKPH148MSXoSkPh5XnC8W+Kj57L+NRikVltZNjl5tEPYfn+r2TFDrNqBpWyilAANd82wec7h6xCI2cD19JUYr2Kx4kgKNltLKuVbTxmtgRuLbeIN5cjhDFr4Dt8X0g4aqDHIWrjdz8Tw8I0g2JsZdzQU8+rmkyfnt0Fi/ph6AZCpwgN/hE5h7e94UP3gsI9mI2QmD/XdImCwQEVpZyi/tbSYCNej77W1G+it5oDiAB8n1oEGtq2nVNvVu+Cv9cw2hlCJlC2k08NfpVuHZpl/7UdzVgeoRRZS2c1qKJm4K6ijL9tCRNN1bdqsJY0eDPa77QmLpF7S9xSWi9Ud48nlfr7LkDEns7JkYQ7Lrq5dD3RSTkBwaY/qRZj/JnnEabSm9DB4dnXA/Kj2Eh66AZzTiA5alPLVw2kl4XMClUdVLSsS3ItHlcdKVxypB2OlKrU3bKKyGLj1aQzYfH+sCl69eaB+MYFGlJZgDWNmOrOdhJlm4/Tg0qRh+lWywrso/vv8NG27GErkP1WH3lAsjfcXFFFqXhAIXvJGShuSmbqKSR8JC6304zGqDnX3ZqzgXQ=
