@@ -14,7 +14,7 @@ const Home = () => (
           <Col xs={12}>
             <Row>
               <Col xs={12}>
-                <h2>Dashboard</h2>
+                <h2>Selfkey Test Crowdsale</h2>
                 <p>put something here</p>
               </Col>
             </Row>

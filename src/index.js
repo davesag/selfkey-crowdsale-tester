@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
+import { Web3Provider } from 'react-web3'
 
 import registerServiceWorker from './registerServiceWorker'
 import store, { history } from './store'
@@ -16,9 +17,11 @@ const target = document.getElementById('root')
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
-        <App />
-      </div>
+      <Web3Provider>
+        <div>
+          <App />
+        </div>
+      </Web3Provider>
     </ConnectedRouter>
   </Provider>,
   target
