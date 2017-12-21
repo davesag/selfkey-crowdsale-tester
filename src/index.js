@@ -17,7 +17,7 @@ const target = document.getElementById('root')
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Web3Provider>
+      <Web3Provider passive>
         <div>
           <App />
         </div>
