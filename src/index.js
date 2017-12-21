@@ -13,11 +13,14 @@ import './index.css'
 import App from './App.jsx'
 
 const target = document.getElementById('root')
-
+/**
+ *  add `passive` in the Web3Provider to disable enforcing of MetaMask.
+ *  `passive` turned on while I was testing on the plane.
+ */
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Web3Provider passive>
+      <Web3Provider>
         <div>
           <App />
         </div>
