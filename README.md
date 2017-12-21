@@ -16,6 +16,11 @@ It uses the following:
 * Code is linted using `eslint` and prettified using `prettier`
 * Tests are run using `jest`
 
+### Environment Variables
+
+* `REACT_APP_CROWDSALE_ADDRESS` — The address of the SelfKey Crowdsale contract
+* `REACT_APP_TOKEN_ADDRESS` — The address of the KEY token
+
 ### Prerequisites
 
 * [NodeJS](https://nodejs.org) — `brew install nvm` then `nvm use 9.3.0` (or later)
