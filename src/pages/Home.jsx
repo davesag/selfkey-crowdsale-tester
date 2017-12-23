@@ -4,6 +4,7 @@ import { Row, Col } from 'react-bootstrap'
 
 import Page from '../components/Page.jsx'
 import Title from '../components/Title.jsx'
+import ABI from '../components/Contract/ABI.jsx'
 import CrowdsaleDates from '../components/Crowdsale/CrowdsaleDates.jsx'
 import CrowdsaleStats from '../components/Crowdsale/CrowdsaleStats.jsx'
 import StatusCheck from '../components/StatusCheck/StatusCheck.jsx'
@@ -30,16 +31,22 @@ const Home = () => (
             <Row>
               <Col xs={12}>
                 <h2>Selfkey Test Crowdsale</h2>
-                <CrowdsaleDates
-                  startDate={dummyData.startTime}
-                  endDate={dummyData.endTime}
-                />
-                <CrowdsaleStats
-                  weiRaised={dummyData.weiRaised}
-                  tokensPurchased={dummyData.tokensPurchased}
-                />
-                <StatusCheck />
-                <KYCVerification />
+                <ABI contracts={['SelfkeyCrowdsale', 'SelfkeyToken']}>
+                  {({ abis }) => (
+                    <section id="crowdsale">
+                      <CrowdsaleDates
+                        startDate={dummyData.startTime}
+                        endDate={dummyData.endTime}
+                      />
+                      <CrowdsaleStats
+                        weiRaised={dummyData.weiRaised}
+                        tokensPurchased={dummyData.tokensPurchased}
+                      />
+                      <StatusCheck />
+                      <KYCVerification />
+                    </section>
+                  )}
+                </ABI>
               </Col>
             </Row>
           </Col>

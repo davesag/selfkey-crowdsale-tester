@@ -57,3 +57,7 @@ typings/
 # Built artifacts
 build
 /src/**/*.css
+
+# macOS desktop metadata
+.DS_Store
+**/.DS_Store
