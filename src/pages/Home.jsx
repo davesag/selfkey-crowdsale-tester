@@ -48,11 +48,9 @@ const Home = () => (
                                   weiRaised={weiRaised}
                                   tokensPurchased={tokensPurchased}
                                 />
+                                <StatusCheck abi={SelfkeyCrowdsale} />
                                 {isOwner && (
-                                  <section id="owner-actions">
-                                    <StatusCheck abi={SelfkeyCrowdsale} />
-                                    <KYCVerification abi={SelfkeyCrowdsale} />
-                                  </section>
+                                  <KYCVerification abi={SelfkeyCrowdsale} />
                                 )}
                               </section>
                             )}
