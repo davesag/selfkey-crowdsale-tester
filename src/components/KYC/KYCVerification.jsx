@@ -4,6 +4,9 @@ import { connect } from 'react-redux'
 
 import { Form, FormGroup, Col, Button } from 'react-bootstrap'
 
+import { ZERO_ADDRESS } from '../../constants'
+
+import { abiPropType } from '../../utils/shapes'
 import verifyKYC from './verifyKYC'
 import unverifyKYC from './unverifyKYC'
 
@@ -15,7 +18,8 @@ const KYCVerification = ({
   verifyButtonLabel,
   unverifyButtonLabel,
   error,
-  address
+  address,
+  abi
 }) => (
   <Form className="form-horizontal" id="kyc-verification">
     <h3>KYC Verification</h3>
@@ -24,7 +28,7 @@ const KYCVerification = ({
         <input
           className="form-control"
           name="address"
-          placeholder="0x00000000000000000000000000000"
+          placeholder={ZERO_ADDRESS}
           defaultValue={address}
           disabled={unverifying || verifying}
         />
@@ -32,7 +36,7 @@ const KYCVerification = ({
       <Col xs={3}>
         <Button
           bsStyle="success"
-          onClick={doVerifyKYC}
+          onClick={doVerifyKYC(abi)}
           disabled={unverifying || verifying}
         >
           {verifyButtonLabel}
@@ -43,7 +47,7 @@ const KYCVerification = ({
       <Col xs={3} xsOffset={3}>
         <Button
           bsStyle="danger"
-          onClick={doUnverifyKYC}
+          onClick={doUnverifyKYC(abi)}
           disabled={unverifying || verifying}
         >
           {unverifyButtonLabel}
@@ -62,7 +66,8 @@ KYCVerification.propTypes = {
   verifyButtonLabel: PropTypes.string,
   unverifyButtonLabel: PropTypes.string,
   error: PropTypes.string,
-  address: PropTypes.string
+  address: PropTypes.string,
+  abi: abiPropType.isRequired
 }
 
 KYCVerification.defaultPropTypes = {
@@ -85,8 +90,10 @@ const mapStateToProps = ({ kyc }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  doVerifyKYC: evt => dispatch(verifyKYC(evt.target.form.address.value)),
-  doUnverifyKYC: evt => dispatch(unverifyKYC(evt.target.form.address.value))
+  doVerifyKYC: abi => evt =>
+    dispatch(verifyKYC(evt.target.form.address.value, abi)),
+  doUnverifyKYC: abi => evt =>
+    dispatch(unverifyKYC(evt.target.form.address.value, abi))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(KYCVerification)

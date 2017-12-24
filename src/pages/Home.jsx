@@ -43,8 +43,8 @@ const Home = () => (
                               weiRaised={weiRaised}
                               tokensPurchased={tokensPurchased}
                             />
-                            <StatusCheck />
-                            <KYCVerification />
+                            <StatusCheck abi={SelfkeyCrowdsale} />
+                            <KYCVerification abi={SelfkeyCrowdsale} />
                           </section>
                         )}
                       </CrowdsaleData>

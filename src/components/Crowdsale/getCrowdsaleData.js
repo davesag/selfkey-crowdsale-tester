@@ -1,5 +1,5 @@
-import Eth from 'ethjs'
 import makeAction from '../../utils/actionMaker'
+import contractAccess from '../../utils/contractAccess'
 
 import {
   CROWDSALE_DATA_GET,
@@ -7,16 +7,14 @@ import {
   CROWDSALE_DATA_GET_FAIL
 } from './actions'
 
-const { REACT_APP_ETH_PROVIDER_URL, REACT_APP_CROWDSALE_ADDRESS } = process.env
+import { CROWDSALE_ADDRESS } from '../../constants'
 
 const getNumber = result => result[0].toNumber()
 
 const getCrowdsaleData = abi => async dispatch => {
   dispatch(makeAction(CROWDSALE_DATA_GET))
   try {
-    const eth = new Eth(new Eth.HttpProvider(REACT_APP_ETH_PROVIDER_URL))
-    const contract = eth.contract(abi)
-    const crowdsale = contract.at(REACT_APP_CROWDSALE_ADDRESS)
+    const crowdsale = contractAccess(CROWDSALE_ADDRESS, abi)
     const startTime = getNumber(await crowdsale.startTime()) * 1000
     const endTime = getNumber(await crowdsale.endTime()) * 1000
     const weiRaised = getNumber(await crowdsale.weiRaised())
