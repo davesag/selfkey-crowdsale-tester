@@ -28,7 +28,7 @@ const getCrowdsaleData = abi => async dispatch => {
       })
     )
   } catch (err) {
-    console.error('caught error', err)
+    console.error(err)
     dispatch(makeAction(CROWDSALE_DATA_GET_FAIL, err.message))
   }
 }
