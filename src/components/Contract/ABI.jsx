@@ -19,13 +19,17 @@ class ABI extends React.Component {
   }
 
   render() {
-    const { abis, loading, errors } = this.props
+    const { abis, loading, errors, contracts } = this.props
     if (loading) return null
     if (errors) {
       console.error('found errors', errors)
       return null
     }
-    return <section id="nav-data">{this.props.children({ abis })}</section>
+    if (Object.keys(abis).length !== contracts.length) {
+      console.debug('have not loaded ABIs yet')
+      return null
+    }
+    return <section id="abis">{this.props.children({ abis })}</section>
   }
 }
 

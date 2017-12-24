@@ -8,7 +8,6 @@ const loadABI = contract => async dispatch => {
   try {
     const result = await fetch(`/abis/${contract}.json`, fetchOptions)
     const abi = await result.json()
-    console.debug('abi', abi)
     dispatch(makeAction(ABI_LOAD_SUCCESS, { contract, abi }))
   } catch (err) {
     console.error('Caught error', err)

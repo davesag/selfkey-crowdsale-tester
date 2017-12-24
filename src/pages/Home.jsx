@@ -5,21 +5,11 @@ import { Row, Col } from 'react-bootstrap'
 import Page from '../components/Page.jsx'
 import Title from '../components/Title.jsx'
 import ABI from '../components/Contract/ABI.jsx'
+import CrowdsaleData from '../components/Crowdsale/CrowdsaleData.jsx'
 import CrowdsaleDates from '../components/Crowdsale/CrowdsaleDates.jsx'
 import CrowdsaleStats from '../components/Crowdsale/CrowdsaleStats.jsx'
 import StatusCheck from '../components/StatusCheck/StatusCheck.jsx'
 import KYCVerification from '../components/KYC/KYCVerification.jsx'
-
-const ONE_DAY = 24 * 60 * 60 * 1000
-
-const now = new Date().getTime()
-
-const dummyData = {
-  startTime: now - ONE_DAY,
-  endTime: now + ONE_DAY,
-  weiRaised: 3331029494852,
-  tokensPurchased: 8888120929292923334110
-}
 
 const Home = () => (
   <Page>
@@ -32,20 +22,34 @@ const Home = () => (
               <Col xs={12}>
                 <h2>Selfkey Test Crowdsale</h2>
                 <ABI contracts={['SelfkeyCrowdsale', 'SelfkeyToken']}>
-                  {({ abis }) => (
-                    <section id="crowdsale">
-                      <CrowdsaleDates
-                        startDate={dummyData.startTime}
-                        endDate={dummyData.endTime}
-                      />
-                      <CrowdsaleStats
-                        weiRaised={dummyData.weiRaised}
-                        tokensPurchased={dummyData.tokensPurchased}
-                      />
-                      <StatusCheck />
-                      <KYCVerification />
-                    </section>
-                  )}
+                  {({ abis }) => {
+                    const { SelfkeyCrowdsale } = abis
+                    console.debug('SelfkeyCrowdsale', SelfkeyCrowdsale)
+                    if (!SelfkeyCrowdsale) return null
+                    return (
+                      <CrowdsaleData abi={SelfkeyCrowdsale}>
+                        {({
+                          startTime,
+                          endTime,
+                          weiRaised,
+                          tokensPurchased
+                        }) => (
+                          <section>
+                            <CrowdsaleDates
+                              startDate={startTime}
+                              endDate={endTime}
+                            />
+                            <CrowdsaleStats
+                              weiRaised={weiRaised}
+                              tokensPurchased={tokensPurchased}
+                            />
+                            <StatusCheck />
+                            <KYCVerification />
+                          </section>
+                        )}
+                      </CrowdsaleData>
+                    )
+                  }}
                 </ABI>
               </Col>
             </Row>

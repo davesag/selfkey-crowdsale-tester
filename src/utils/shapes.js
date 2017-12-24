@@ -14,28 +14,46 @@ const abiTypeShape = {
   type: string.isRequired
 }
 
-const abiEventShape = {
+export const abiEventShape = {
   name: string.isRequired,
   anonymous: bool.isRequired,
   inputs: arrayOf(shape(abiTypeShape)).isRequired,
-  type: oneOf(['event'])
+  type: oneOf(['event']).isRequired
 }
 
-const abiFunctionShape = {
+export const abiConstructorShape = {
+  inputs: arrayOf(shape(abiTypeShape)).isRequired,
+  type: oneOf(['constructor']).isRequired,
+  payable: bool.isRequired,
+  stateMutability: oneOf(['view', 'nonpayable']).isRequired
+}
+
+export const abiFallbackShape = {
+  type: oneOf(['fallback']).isRequired,
+  payable: bool.isRequired,
+  stateMutability: oneOf(['view', 'nonpayable', 'payable']).isRequired
+}
+
+export const abiFunctionShape = {
   name: string.isRequired,
   constant: bool.isRequired,
   inputs: arrayOf(shape(abiTypeShape)).isRequired,
   outputs: arrayOf(shape(abiTypeShape)).isRequired,
   payable: bool.isRequired,
-  stateMutability: oneOf(['view', 'nonpayable']),
-  type: oneOf(['function'])
+  stateMutability: oneOf(['view', 'nonpayable']).isRequired,
+  type: oneOf(['function']).isRequired
 }
 
 export const validAbis = (props, propName) => {
   const abis = props[propName]
   Object.keys(abis).forEach(abi => {
     const isErr = arrayOf(
-      oneOfType([shape(abiFunctionShape), shape(abiEventShape)])
+      oneOfType([
+        shape(abiConstructorShape),
+        shape(abiFunctionShape),
+        shape(abiEventShape),
+        shape(abiFallbackShape)
+      ])
     )
     if (isErr) return isErr
   })
