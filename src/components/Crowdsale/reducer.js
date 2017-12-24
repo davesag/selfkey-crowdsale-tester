@@ -23,7 +23,6 @@ const reducer = (state = INITIAL_STATE, action) => {
       }
     }
     case CROWDSALE_DATA_GET_SUCCESS: {
-      console.debug('using payload', payload)
       return {
         ...state,
         loading: false,

@@ -3,12 +3,7 @@ import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 
-import {
-  abiConstructorShape,
-  abiFunctionShape,
-  abiEventShape,
-  abiFallbackShape
-} from '../../utils/shapes'
+import { abiPropType } from '../../utils/shapes'
 import getCrowdsaleData from './getCrowdsaleData'
 
 class CrowdsaleData extends React.Component {
@@ -54,14 +49,7 @@ class CrowdsaleData extends React.Component {
 CrowdsaleData.propTypes = {
   children: PropTypes.func.isRequired,
   doGetCrowdsaleData: PropTypes.func.isRequired,
-  abi: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.shape(abiConstructorShape),
-      PropTypes.shape(abiFunctionShape),
-      PropTypes.shape(abiEventShape),
-      PropTypes.shape(abiFallbackShape)
-    ])
-  ).isRequired,
+  abi: abiPropType.isRequired,
   loading: PropTypes.bool,
   error: PropTypes.string,
   startTime: PropTypes.number,

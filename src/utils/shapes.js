@@ -44,17 +44,19 @@ export const abiFunctionShape = {
   type: oneOf(['function']).isRequired
 }
 
+export const abiPropType = arrayOf(
+  oneOfType([
+    shape(abiConstructorShape),
+    shape(abiFunctionShape),
+    shape(abiEventShape),
+    shape(abiFallbackShape)
+  ])
+)
+
 export const validAbis = (props, propName) => {
   const abis = props[propName]
   Object.keys(abis).forEach(abi => {
-    const isErr = arrayOf(
-      oneOfType([
-        shape(abiConstructorShape),
-        shape(abiFunctionShape),
-        shape(abiEventShape),
-        shape(abiFallbackShape)
-      ])
-    )
+    const isErr = abiPropType(abi)
     if (isErr) return isErr
   })
 }

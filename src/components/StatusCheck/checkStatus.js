@@ -1,3 +1,4 @@
+import contractAccess from '../../utils/contractAccess'
 import makeAction from '../../utils/actionMaker'
 import {
   STATUS_CHECK,
@@ -5,16 +6,17 @@ import {
   STATUS_CHECK_FAIL
 } from './actions'
 
-const fakeStatusCheckResponse = true // TODO: get this value from web3
+import { CROWDSALE_ADDRESS } from '../../constants'
 
-const checkStatus = address => async dispatch => {
+const checkStatus = (address, abi) => async dispatch => {
   if (!address || address === '') {
     dispatch(makeAction(STATUS_CHECK_FAIL, 'Invalid Address'))
   } else {
     dispatch(makeAction(STATUS_CHECK, address))
     try {
-      // do the web3 stuff then
-      dispatch(makeAction(STATUS_CHECK_SUCCESS, fakeStatusCheckResponse))
+      const crowdsale = contractAccess(CROWDSALE_ADDRESS, abi)
+      const result = await crowdsale.kycVerified(address)
+      dispatch(makeAction(STATUS_CHECK_SUCCESS, result[0]))
     } catch (err) {
       dispatch(makeAction(STATUS_CHECK_FAIL, err.message))
     }
