@@ -18,8 +18,9 @@ It uses the following:
 
 ### Environment Variables
 
-* `REACT_APP_CROWDSALE_ADDRESS` — The address of the SelfKey Crowdsale contract
-* `REACT_APP_TOKEN_ADDRESS` — The address of the KEY token
+* `REACT_APP_ETH_PROVIDER_URL` — The url of the eth `HttpProvider`.
+* `REACT_APP_CROWDSALE_ADDRESS` — The address of the `SelfKey Crowdsale` contract
+* `REACT_APP_TOKEN_ADDRESS` — The address of the `KEY` token
 
 ### Prerequisites
 
