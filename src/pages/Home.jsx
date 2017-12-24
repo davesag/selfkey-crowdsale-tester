@@ -5,6 +5,8 @@ import { Row, Col } from 'react-bootstrap'
 import Page from '../components/Page.jsx'
 import Title from '../components/Title.jsx'
 import ABI from '../components/Contract/ABI.jsx'
+import OwnerData from '../components/Owner/OwnerData.jsx'
+import Owner from '../components/Owner/Owner.jsx'
 import CrowdsaleData from '../components/Crowdsale/CrowdsaleData.jsx'
 import CrowdsaleDates from '../components/Crowdsale/CrowdsaleDates.jsx'
 import CrowdsaleStats from '../components/Crowdsale/CrowdsaleStats.jsx'
@@ -27,27 +29,34 @@ const Home = () => (
                     console.debug('SelfkeyCrowdsale', SelfkeyCrowdsale)
                     if (!SelfkeyCrowdsale) return null
                     return (
-                      <CrowdsaleData abi={SelfkeyCrowdsale}>
-                        {({
-                          startTime,
-                          endTime,
-                          weiRaised,
-                          tokensPurchased
-                        }) => (
-                          <section>
-                            <CrowdsaleDates
-                              startDate={startTime}
-                              endDate={endTime}
-                            />
-                            <CrowdsaleStats
-                              weiRaised={weiRaised}
-                              tokensPurchased={tokensPurchased}
-                            />
-                            <StatusCheck abi={SelfkeyCrowdsale} />
-                            <KYCVerification abi={SelfkeyCrowdsale} />
-                          </section>
+                      <OwnerData abi={SelfkeyCrowdsale}>
+                        {({ isOwner }) => (
+                          <CrowdsaleData abi={SelfkeyCrowdsale}>
+                            {({
+                              startTime,
+                              endTime,
+                              weiRaised,
+                              tokensPurchased
+                            }) => (
+                              <section>
+                                <Owner isOwner={isOwner} />
+                                <CrowdsaleDates
+                                  startDate={startTime}
+                                  endDate={endTime}
+                                />
+                                <CrowdsaleStats
+                                  weiRaised={weiRaised}
+                                  tokensPurchased={tokensPurchased}
+                                />
+                                <StatusCheck abi={SelfkeyCrowdsale} />
+                                {isOwner && (
+                                  <KYCVerification abi={SelfkeyCrowdsale} />
+                                )}
+                              </section>
+                            )}
+                          </CrowdsaleData>
                         )}
-                      </CrowdsaleData>
+                      </OwnerData>
                     )
                   }}
                 </ABI>

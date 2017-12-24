@@ -6,11 +6,13 @@ import {
   STATUS_CHECK_FAIL
 } from './actions'
 
-import { CROWDSALE_ADDRESS } from '../../constants'
+import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
+
+const { invalidAddress } = ERRORS
 
 const checkStatus = (address, abi) => async dispatch => {
   if (!address || address === '') {
-    dispatch(makeAction(STATUS_CHECK_FAIL, 'Invalid Address'))
+    dispatch(makeAction(STATUS_CHECK_FAIL, invalidAddress))
   } else {
     dispatch(makeAction(STATUS_CHECK, address))
     try {

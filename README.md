@@ -2,6 +2,8 @@
 
 The Test UI for the SelfKey Crowdsale
 
+Deployed to http://selfkey-crowdsale-tester.netlify.com
+
 * `develop` [![Build Status](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester.svg?branch=develop)](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester)
 * `master` [![Build Status](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester.svg?branch=master)](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester)
 

@@ -6,19 +6,24 @@ import {
   KYC_UNVERIFY_FAIL
 } from './actions'
 
-import { CROWDSALE_ADDRESS } from '../../constants'
+import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 
-const unverifyKYC = (address, abi) => async dispatch => {
-  if (!address || address === '') {
-    dispatch(makeAction(KYC_UNVERIFY_FAIL, 'Invalid Address'))
+const { invalidAddress, notCrowdsaleOwner } = ERRORS
+
+const unverifyKYC = (addressToUnverify, abi) => async (dispatch, getState) => {
+  const { owner: { address, isOwner } } = getState()
+  if (!addressToUnverify || addressToUnverify === '') {
+    dispatch(makeAction(KYC_UNVERIFY_FAIL, invalidAddress))
+  } else if (!isOwner) {
+    dispatch(makeAction(KYC_UNVERIFY_FAIL, notCrowdsaleOwner))
   } else {
-    dispatch(makeAction(KYC_UNVERIFY, address))
+    dispatch(makeAction(KYC_UNVERIFY, addressToUnverify))
     try {
       const crowdsale = contractAccess(CROWDSALE_ADDRESS, abi)
-      await crowdsale.rejectKYC(address)
+      await crowdsale.rejectKYC(addressToUnverify, { from: address })
       dispatch(makeAction(KYC_UNVERIFY_SUCCESS))
     } catch (err) {
-      console.error('caught error', err)
+      console.error(err)
       dispatch(makeAction(KYC_UNVERIFY_FAIL, err.message))
     }
   }

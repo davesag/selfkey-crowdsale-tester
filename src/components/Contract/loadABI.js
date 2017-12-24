@@ -10,7 +10,7 @@ const loadABI = contract => async dispatch => {
     const abi = await result.json()
     dispatch(makeAction(ABI_LOAD_SUCCESS, { contract, abi }))
   } catch (err) {
-    console.error('Caught error', err)
+    console.error(err)
     dispatch(makeAction(ABI_LOAD_FAIL, { contract, error: err.message }))
   }
 }
