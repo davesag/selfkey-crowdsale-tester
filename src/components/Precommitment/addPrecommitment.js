@@ -17,7 +17,7 @@ const {
 
 const addPrecommitment = (
   beneficiary,
-  tokensAllocated: rawTokensAllocated,
+  rawTokensAllocated,
   halfVesting = false,
   abi
 ) => async (dispatch, getState) => {
