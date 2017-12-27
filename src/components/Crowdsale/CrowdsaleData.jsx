@@ -14,22 +14,10 @@ class CrowdsaleData extends React.Component {
   }
 
   render() {
-    const {
-      loading,
-      error,
-      startTime,
-      endTime,
-      weiRaised,
-      tokensPurchased
-    } = this.props
+    const { loading, error, startTime, endTime, tokensPurchased } = this.props
     if (loading) return <p>loading crowdsale data</p>
     if (error) return <p>error: {error}</p>
-    if (
-      startTime === null ||
-      endTime === null ||
-      weiRaised === null ||
-      tokensPurchased === null
-    ) {
+    if (startTime === null || endTime === null || tokensPurchased === null) {
       console.debug('awaiting data')
       return null
     }
@@ -38,7 +26,6 @@ class CrowdsaleData extends React.Component {
         {this.props.children({
           startTime,
           endTime,
-          weiRaised,
           tokensPurchased
         })}
       </section>
@@ -54,7 +41,6 @@ CrowdsaleData.propTypes = {
   error: PropTypes.string,
   startTime: PropTypes.number,
   endTime: PropTypes.number,
-  weiRaised: PropTypes.number,
   tokensPurchased: PropTypes.number
 }
 
@@ -63,18 +49,16 @@ CrowdsaleData.defaultPropTypes = {
   error: null,
   startTime: null,
   endTime: null,
-  weiRaised: null,
   tokensPurchased: null
 }
 
 const mapStateToProps = ({
-  crowdsale: { loading, error, startTime, endTime, weiRaised, tokensPurchased }
+  crowdsale: { loading, error, startTime, endTime, tokensPurchased }
 }) => ({
   loading,
   error,
   startTime,
   endTime,
-  weiRaised,
   tokensPurchased
 })
 

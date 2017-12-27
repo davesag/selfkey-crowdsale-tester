@@ -32,12 +32,7 @@ const Home = () => (
                       <OwnerData abi={SelfkeyCrowdsale}>
                         {({ isOwner }) => (
                           <CrowdsaleData abi={SelfkeyCrowdsale}>
-                            {({
-                              startTime,
-                              endTime,
-                              weiRaised,
-                              tokensPurchased
-                            }) => (
+                            {({ startTime, endTime, tokensPurchased }) => (
                               <section>
                                 <Owner isOwner={isOwner} />
                                 <CrowdsaleDates
@@ -45,7 +40,6 @@ const Home = () => (
                                   endDate={endTime}
                                 />
                                 <CrowdsaleStats
-                                  weiRaised={weiRaised}
                                   tokensPurchased={tokensPurchased}
                                 />
                                 <StatusCheck abi={SelfkeyCrowdsale} />
