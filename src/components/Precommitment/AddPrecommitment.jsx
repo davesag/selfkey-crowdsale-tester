@@ -23,6 +23,7 @@ const AddPrecommitment = ({
     <h3>Add Precommitment</h3>
     <FormGroup className={error ? 'has-error' : null}>
       <Col xs={3}>
+        <label for="beneficiary">Beneficiary address</label>
         <input
           className="form-control"
           name="beneficiary"
@@ -32,6 +33,7 @@ const AddPrecommitment = ({
         />
       </Col>
       <Col xs={2}>
+        <label for="tokensAllocated">Tokens allocated</label>
         <input
           className="form-control"
           name="tokensAllocated"
@@ -41,6 +43,7 @@ const AddPrecommitment = ({
         />
       </Col>
       <Col xs={2}>
+        <label for="halfVesting">Half Vesting?</label>
         <select
           className="form-control"
           name="halfVesting"
@@ -59,6 +62,8 @@ const AddPrecommitment = ({
         </select>
       </Col>
       <Col xs={3}>
+        <label>Do it</label>
+        <br />
         <Button
           bsStyle="success"
           onClick={doAddPrecommitment(abi)}
