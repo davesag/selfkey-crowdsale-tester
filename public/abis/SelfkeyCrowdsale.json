@@ -1,6 +1,6 @@
 [
   {
-    "constant": false,
+    "constant": true,
     "inputs": [
       {
         "name": "beneficiary",
@@ -19,8 +19,46 @@
         "type": "uint64"
       }
     ],
-    "name": "addPrecommitment",
-    "outputs": [],
+    "name": "timelockFounders1",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_ethPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "setEthPrice",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "releaseLockFounders1",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -56,6 +94,25 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "MIN_TOKEN_UNIT",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "participant",
+        "type": "address"
+      }
+    ],
     "name": "rate",
     "outputs": [
       {
@@ -69,7 +126,12 @@
   },
   {
     "constant": true,
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
     "name": "LEGAL_EXPENSES_TOKENS",
     "outputs": [
       {
@@ -104,7 +166,12 @@
       }
     ],
     "name": "verifyKYC",
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -129,37 +196,36 @@
     "type": "function"
   },
   {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "beneficiary",
+        "type": "address"
+      },
+      {
+        "name": "tokensAllocated",
+        "type": "uint256"
+      },
+      {
+        "name": "halfVesting",
+        "type": "bool"
+      }
+    ],
+    "name": "addPrecommitment",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "constant": true,
     "inputs": [],
     "name": "goal",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "weiRaised",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "presaleRate",
     "outputs": [
       {
         "name": "",
@@ -208,12 +274,59 @@
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [],
+    "name": "TOKEN_DECIMALS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "FOUNDERS_TOKENS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "constant": false,
     "inputs": [],
-    "name": "releaseLockFounders",
-    "outputs": [],
+    "name": "releaseLockFounders2",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
     "payable": false,
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "timelockFounders2",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -233,6 +346,25 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "FOUNDERS_TOKENS_VESTED_2",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
     "name": "startTime",
     "outputs": [
       {
@@ -274,7 +406,12 @@
   },
   {
     "constant": true,
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
     "name": "owner",
     "outputs": [
       {
@@ -289,21 +426,7 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "PURCHASE_MAX_CAP_WEI",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "FOUNDERS_TOKENS_VESTED",
+    "name": "FOUNDERS_TOKENS_VESTED_1",
     "outputs": [
       {
         "name": "",
@@ -335,26 +458,17 @@
   },
   {
     "constant": true,
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "participant",
+        "type": "address"
+      }
+    ],
     "name": "FOUNDATION_POOL_TOKENS",
     "outputs": [
       {
         "name": "",
         "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "timelockFounders",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
       }
     ],
     "payable": false,
@@ -381,18 +495,14 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [],
-    "name": "claimRefund",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "constant": true,
-    "inputs": [],
-    "name": "PRESALE_CAP",
+    "inputs": [
+      {
+        "name": "participant",
+        "type": "address"
+      }
+    ],
+    "name": "PURCHASER_MIN_CAP_USD",
     "outputs": [
       {
         "name": "",
@@ -401,6 +511,25 @@
     ],
     "payable": false,
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "claimRefund",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -412,15 +541,6 @@
       }
     ],
     "name": "rejectKYC",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "PURCHASE_MIN_CAP_WEI",
     "outputs": [
       {
         "name": "",
@@ -428,7 +548,7 @@
       }
     ],
     "payable": false,
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -440,7 +560,12 @@
       }
     ],
     "name": "releaseLock",
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -481,7 +606,7 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "lockedTotal",
+    "name": "minCapWei",
     "outputs": [
       {
         "name": "",
@@ -493,55 +618,13 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
-    "name": "transferOwnership",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [],
-    "name": "foundationPool",
+    "name": "TOKEN_PRICE_THOUSANDTH",
     "outputs": [
       {
         "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "vault",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "token",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -565,6 +648,218 @@
       {
         "name": "_presaleRate",
         "type": "uint256"
+      },
+      {
+        "name": "_wallet",
+        "type": "address"
+      },
+      {
+        "name": "_foundationPool",
+        "type": "address"
+      },
+      {
+        "name": "_foundersPool",
+        "type": "address"
+      },
+      {
+        "name": "_legalExpensesWallet",
+        "type": "address"
+      },
+      {
+        "name": "_goal",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "name": "lockedTotal",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ]
+  },
+  {
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "name": "maxCapWei",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ]
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "newOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "beneficiary",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "value",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "transferOwnership",
+    "type": "function",
+    "constant": false,
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "participant",
+        "type": "address"
+      }
+    ],
+    "name": "foundationPool",
+    "type": "function",
+    "constant": true,
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "participant",
+        "type": "address"
+      }
+    ],
+    "name": "PURCHASER_MAX_CAP_USD",
+    "type": "function",
+    "constant": true,
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "participant",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "contribution",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "bonusFactor",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "_rate",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "vestingMonths",
+        "type": "uint64"
+      }
+    ],
+    "name": "vault",
+    "type": "function",
+    "constant": true,
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "token",
+    "type": "function",
+    "constant": true,
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "ethPrice",
+    "type": "function",
+    "constant": true,
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view"
+  },
+  {
+    "inputs": [
+      {
+        "name": "_startTime",
+        "type": "uint64"
+      },
+      {
+        "name": "_endTime",
+        "type": "uint64"
       },
       {
         "name": "_wallet",
@@ -657,23 +952,8 @@
       },
       {
         "indexed": false,
-        "name": "contribution",
+        "name": "tokensAllocated",
         "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "bonusFactor",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_rate",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "vestingMonths",
-        "type": "uint64"
       }
     ],
     "name": "AddedPrecommitment",
