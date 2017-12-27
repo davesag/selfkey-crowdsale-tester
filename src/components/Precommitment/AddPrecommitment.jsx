@@ -19,11 +19,11 @@ const AddPrecommitment = ({
   halfVesting,
   abi
 }) => (
-  <Form className="form-horizontal" id="kyc-verification">
+  <Form className="form-horizontal" id="add-precommitment">
     <h3>Add Precommitment</h3>
     <FormGroup className={error ? 'has-error' : null}>
       <Col xs={3}>
-        <label for="beneficiary">Beneficiary address</label>
+        <label>Beneficiary address</label>
         <input
           className="form-control"
           name="beneficiary"
@@ -33,17 +33,16 @@ const AddPrecommitment = ({
         />
       </Col>
       <Col xs={2}>
-        <label for="tokensAllocated">Tokens allocated</label>
+        <label>Tokens allocated</label>
         <input
           className="form-control"
           name="tokensAllocated"
           defaultValue={tokensAllocated}
-          type="number"
           disabled={adding}
         />
       </Col>
       <Col xs={2}>
-        <label for="halfVesting">Half Vesting?</label>
+        <label>Half Vesting?</label>
         <select
           className="form-control"
           name="halfVesting"
@@ -83,7 +82,7 @@ AddPrecommitment.propTypes = {
   buttonLabel: PropTypes.string,
   error: PropTypes.string,
   beneficiary: PropTypes.string,
-  tokensAllocated: PropTypes.number,
+  tokensAllocated: PropTypes.string,
   halfVesting: PropTypes.bool,
   abi: abiPropType.isRequired
 }
@@ -97,8 +96,9 @@ AddPrecommitment.defaultPropTypes = {
   halfVesting: false
 }
 
-const mapStateToProps = ({ precommitment }) => ({
+const mapStateToProps = ({ tokensAllocated, ...precommitment }) => ({
   ...precommitment,
+  tokensAllocated: tokensAllocated ? tokensAllocated.toString() : null,
   buttonLabel: precommitment.adding
     ? 'Adding Precommitment'
     : AddPrecommitment.defaultPropTypes.buttonLabel
@@ -109,9 +109,9 @@ const mapDispatchToProps = dispatch => ({
     const { beneficiary, tokensAllocated, halfVesting } = evt.target.form
     dispatch(
       addPrecommitment(
-        beneficiary.value,
-        tokensAllocated.value,
-        halfVesting.value,
+        beneficiary.value, // string — address
+        tokensAllocated.value, // string
+        halfVesting.value, // string YES or NO
         abi
       )
     )

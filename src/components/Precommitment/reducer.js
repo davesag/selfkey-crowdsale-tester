@@ -19,19 +19,19 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...INITIAL_STATE,
         ...payload,
-        loading: true
+        adding: true
       }
     }
     case PRECOMMITMENT_ADD_SUCCESS: {
       return {
         ...state,
-        loading: false
+        adding: false
       }
     }
     case PRECOMMITMENT_ADD_FAIL: {
       return {
         ...state,
-        loading: false,
+        adding: false,
         error: payload
       }
     }

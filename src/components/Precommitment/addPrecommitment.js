@@ -1,5 +1,6 @@
 import contractAccess from '../../utils/contractAccess'
 import makeAction from '../../utils/actionMaker'
+import BigNumber from 'bignumber.js'
 
 import {
   PRECOMMITMENT_ADD,
@@ -16,16 +17,18 @@ const {
 
 const addPrecommitment = (
   beneficiary,
-  tokensAllocated,
+  tokensAllocated: rawTokensAllocated,
   halfVesting = false,
   abi
 ) => async (dispatch, getState) => {
   const { owner: { isOwner, address } } = getState()
+  const tokensAllocated = BigNumber(rawTokensAllocated)
+
   if (!isOwner) {
     dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, notCrowdsaleOwner))
   } else if (!beneficiary || beneficiary === '') {
     dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, invalidAddress))
-  } else if (tokensAllocated <= 0) {
+  } else if (tokensAllocated.lt(0)) {
     dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, amountMustBeGreaterThanZero))
   } else {
     dispatch(

@@ -11,6 +11,7 @@ export const TOKEN_ADDRESS = REACT_APP_TOKEN_ADDRESS
 
 export const ERRORS = {
   invalidAddress: 'Invalid Address',
+  invalidData: 'Invalid data',
   notCrowdsaleOwner: 'You are not the owner of the Crowdsale Contract',
   amountMustBeGreaterThanZero: 'Amount must be greater than zero'
 }

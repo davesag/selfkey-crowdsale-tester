@@ -8,6 +8,7 @@ import contract from '../components/Contract/reducer'
 import crowdsale from '../components/Crowdsale/reducer'
 import owner from '../components/Owner/reducer'
 import precommitment from '../components/Precommitment/reducer'
+import precommitments from '../components/Precommitments/reducer'
 
 export default combineReducers({
   routing,
@@ -17,5 +18,6 @@ export default combineReducers({
   contract,
   crowdsale,
   owner,
-  precommitment
+  precommitment,
+  precommitments
 })
