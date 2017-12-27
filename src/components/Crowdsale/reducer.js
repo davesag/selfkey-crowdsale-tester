@@ -9,7 +9,6 @@ const INITIAL_STATE = {
   error: null,
   startTime: null,
   endTime: null,
-  weiRaised: null,
   tokensPurchased: null
 }
 

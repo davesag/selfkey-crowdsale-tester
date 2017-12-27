@@ -1,24 +1,7 @@
 [
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "beneficiary",
-        "type": "address"
-      },
-      {
-        "name": "weiContribution",
-        "type": "uint256"
-      },
-      {
-        "name": "bonusFactor",
-        "type": "uint256"
-      },
-      {
-        "name": "vestingPeriod",
-        "type": "uint64"
-      }
-    ],
+    "inputs": [],
     "name": "timelockFounders1",
     "outputs": [
       {
@@ -39,12 +22,7 @@
       }
     ],
     "name": "setEthPrice",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -53,12 +31,7 @@
     "constant": false,
     "inputs": [],
     "name": "releaseLockFounders1",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -107,12 +80,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "participant",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "rate",
     "outputs": [
       {
@@ -126,12 +94,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "LEGAL_EXPENSES_TOKENS",
     "outputs": [
       {
@@ -166,12 +129,7 @@
       }
     ],
     "name": "verifyKYC",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -212,12 +170,7 @@
       }
     ],
     "name": "addPrecommitment",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -305,12 +258,7 @@
     "constant": false,
     "inputs": [],
     "name": "releaseLockFounders2",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -359,12 +307,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "startTime",
     "outputs": [
       {
@@ -406,12 +349,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "owner",
     "outputs": [
       {
@@ -458,12 +396,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "participant",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "FOUNDATION_POOL_TOKENS",
     "outputs": [
       {
@@ -496,12 +429,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "participant",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "PURCHASER_MIN_CAP_USD",
     "outputs": [
       {
@@ -515,19 +443,9 @@
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "claimRefund",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -541,12 +459,7 @@
       }
     ],
     "name": "rejectKYC",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -560,12 +473,7 @@
       }
     ],
     "name": "releaseLock",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -632,60 +540,20 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "name": "_startTime",
-        "type": "uint64"
-      },
-      {
-        "name": "_endTime",
-        "type": "uint64"
-      },
-      {
-        "name": "_rate",
-        "type": "uint256"
-      },
-      {
-        "name": "_presaleRate",
-        "type": "uint256"
-      },
-      {
-        "name": "_wallet",
-        "type": "address"
-      },
-      {
-        "name": "_foundationPool",
-        "type": "address"
-      },
-      {
-        "name": "_foundersPool",
-        "type": "address"
-      },
-      {
-        "name": "_legalExpensesWallet",
-        "type": "address"
-      },
-      {
-        "name": "_goal",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
     "constant": true,
+    "inputs": [],
     "name": "lockedTotal",
     "outputs": [
       {
         "name": "",
         "type": "uint256"
       }
-    ]
-  },
-  {
+    ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function",
+    "type": "function"
+  },
+  {
     "constant": true,
     "inputs": [],
     "name": "maxCapWei",
@@ -694,51 +562,29 @@
         "name": "",
         "type": "uint256"
       }
-    ]
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "anonymous": false,
+    "constant": false,
     "inputs": [
       {
-        "indexed": true,
         "name": "newOwner",
         "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "beneficiary",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "value",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "amount",
-        "type": "uint256"
       }
     ],
     "name": "transferOwnership",
-    "type": "function",
-    "constant": false,
     "outputs": [],
     "payable": false,
-    "stateMutability": "nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "participant",
-        "type": "address"
-      }
-    ],
+    "constant": true,
+    "inputs": [],
     "name": "foundationPool",
-    "type": "function",
-    "constant": true,
     "outputs": [
       {
         "name": "",
@@ -746,20 +592,13 @@
       }
     ],
     "payable": false,
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "participant",
-        "type": "address"
-      }
-    ],
+    "constant": true,
+    "inputs": [],
     "name": "PURCHASER_MAX_CAP_USD",
-    "type": "function",
-    "constant": true,
     "outputs": [
       {
         "name": "",
@@ -767,40 +606,13 @@
       }
     ],
     "payable": false,
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "participant",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "contribution",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "bonusFactor",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_rate",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "vestingMonths",
-        "type": "uint64"
-      }
-    ],
+    "constant": true,
+    "inputs": [],
     "name": "vault",
-    "type": "function",
-    "constant": true,
     "outputs": [
       {
         "name": "",
@@ -808,14 +620,13 @@
       }
     ],
     "payable": false,
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "anonymous": false,
+    "constant": true,
     "inputs": [],
     "name": "token",
-    "type": "function",
-    "constant": true,
     "outputs": [
       {
         "name": "",
@@ -823,25 +634,13 @@
       }
     ],
     "payable": false,
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "previousOwner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
-    "name": "ethPrice",
-    "type": "function",
     "constant": true,
+    "inputs": [],
+    "name": "ethPrice",
     "outputs": [
       {
         "name": "",
@@ -849,7 +648,8 @@
       }
     ],
     "payable": false,
-    "stateMutability": "view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [
