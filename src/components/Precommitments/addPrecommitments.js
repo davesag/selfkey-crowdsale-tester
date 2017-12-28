@@ -36,7 +36,7 @@ const addPrecommitments = (data, abi) => async (dispatch, getState) => {
               'addPrecommitment',
               beneficiary,
               BigNumber(tokensAllocated),
-              halfVesting
+              halfVesting === 'true'
             )
             dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD_SUCCESS, item))
           } catch (errr) {

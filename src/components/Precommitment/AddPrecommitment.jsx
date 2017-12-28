@@ -7,6 +7,8 @@ import { Form, FormGroup, Col, Button } from 'react-bootstrap'
 import { ZERO_ADDRESS } from '../../constants'
 
 import { abiPropType } from '../../utils/shapes'
+import stringIfNotNull from '../../utils/stringIfNotNull'
+
 import addPrecommitment from './addPrecommitment'
 
 const AddPrecommitment = ({
@@ -52,10 +54,10 @@ const AddPrecommitment = ({
           <option key="choose" value="">
             Choose…
           </option>
-          <option key="chooseTrue" value={true}>
+          <option key="chooseTrue" value="true">
             Yes
           </option>
-          <option key="chooseFalse" value={false}>
+          <option key="chooseFalse" value="false">
             No
           </option>
         </select>
@@ -83,7 +85,7 @@ AddPrecommitment.propTypes = {
   error: PropTypes.string,
   beneficiary: PropTypes.string,
   tokensAllocated: PropTypes.string,
-  halfVesting: PropTypes.bool,
+  halfVesting: PropTypes.oneOf(['true', 'false']),
   abi: abiPropType.isRequired
 }
 
@@ -93,12 +95,17 @@ AddPrecommitment.defaultPropTypes = {
   error: null,
   beneficiary: null,
   tokensAllocated: null,
-  halfVesting: false
+  halfVesting: 'false'
 }
 
-const mapStateToProps = ({ tokensAllocated, ...precommitment }) => ({
+const mapStateToProps = ({
+  tokensAllocated,
+  halfVesting,
+  ...precommitment
+}) => ({
   ...precommitment,
-  tokensAllocated: tokensAllocated ? tokensAllocated.toString() : null,
+  halfVesting: stringIfNotNull(halfVesting),
+  tokensAllocated: stringIfNotNull(tokensAllocated),
   buttonLabel: precommitment.adding
     ? 'Adding Precommitment'
     : AddPrecommitment.defaultPropTypes.buttonLabel
