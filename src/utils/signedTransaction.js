@@ -11,7 +11,7 @@ const eth = new Eth(new HttpProvider(ETH_PROVIDER_URL))
 const web3 = new Web3(new Web3.providers.HttpProvider(ETH_PROVIDER_URL))
 
 const signedTransaction = (abi, contractAddress, owner) => {
-  const contract = new web3.eth.Contract(abi, owner)
+  const contract = new web3.eth.Contract(abi, contractAddress)
   const { methods } = contract
 
   return async (fnName, ...params) => {
