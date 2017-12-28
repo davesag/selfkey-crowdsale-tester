@@ -1,4 +1,4 @@
-import contractAccess from '../../utils/contractAccess'
+import signedTransaction from '../../utils/signedTransaction'
 import makeAction from '../../utils/actionMaker'
 import BigNumber from 'bignumber.js'
 
@@ -36,17 +36,17 @@ const addPrecommitments = (data, abi) => async (dispatch, getState) => {
     const parsedData = parse(data)
     dispatch(makeAction(PRECOMMITMENTS_BULK_ADD, parsedData))
     try {
-      const crowdsale = contractAccess(CROWDSALE_ADDRESS, abi)
+      const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
       await Promise.all(
         parsedData.map(async item => {
           const { beneficiary, tokensAllocated, halfVesting } = item
           dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD, item))
           try {
-            await crowdsale.addPrecommitment(
+            await signTx(
+              'addPrecommitment',
               beneficiary,
               BigNumber(tokensAllocated),
-              halfVesting,
-              { from: address }
+              halfVesting
             )
             dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD_SUCCESS, item))
           } catch (errr) {

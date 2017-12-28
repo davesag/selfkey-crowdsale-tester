@@ -1,4 +1,4 @@
-import contractAccess from '../../utils/contractAccess'
+import signedTransaction from '../../utils/signedTransaction'
 import makeAction from '../../utils/actionMaker'
 import BigNumber from 'bignumber.js'
 
@@ -39,12 +39,12 @@ const addPrecommitment = (
       })
     )
     try {
-      const crowdsale = contractAccess(CROWDSALE_ADDRESS, abi)
-      await crowdsale.addPrecommitment(
+      const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
+      await signTx(
+        'addPrecommitment',
         beneficiary,
         tokensAllocated,
-        halfVesting,
-        { from: address }
+        halfVesting
       )
       dispatch(makeAction(PRECOMMITMENT_ADD_SUCCESS))
     } catch (err) {

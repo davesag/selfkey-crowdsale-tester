@@ -1,4 +1,4 @@
-import contractAccess from '../../utils/contractAccess'
+import signedTransaction from '../../utils/signedTransaction'
 import makeAction from '../../utils/actionMaker'
 import {
   KYC_UNVERIFY,
@@ -19,8 +19,8 @@ const unverifyKYC = (addressToUnverify, abi) => async (dispatch, getState) => {
   } else {
     dispatch(makeAction(KYC_UNVERIFY, addressToUnverify))
     try {
-      const crowdsale = contractAccess(CROWDSALE_ADDRESS, abi)
-      await crowdsale.rejectKYC(addressToUnverify, { from: address })
+      const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
+      await signTx('rejectKYC', addressToUnverify)
       dispatch(makeAction(KYC_UNVERIFY_SUCCESS))
     } catch (err) {
       console.error(err)
