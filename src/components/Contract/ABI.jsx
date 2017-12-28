@@ -7,9 +7,9 @@ import loadABI from './loadABI'
 
 class ABI extends React.Component {
   componentWillMount() {
-    const { contracts, doLoadABI } = this.props
+    const { contracts, abis, doLoadABI } = this.props
     contracts.forEach(contract => {
-      doLoadABI(contract)
+      if (!abis[contract]) doLoadABI(contract)
     })
   }
 

@@ -16,9 +16,7 @@ class OwnerData extends React.Component {
     const { loading, error, isOwner } = this.props
     if (loading) return <p>loading crowdsale owner</p>
     if (error) return <p>error: {error}</p>
-    return (
-      <section id="crowdsale-data">{this.props.children({ isOwner })}</section>
-    )
+    return <section id="owner">{this.props.children({ isOwner })}</section>
   }
 }
 
