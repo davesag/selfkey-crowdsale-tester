@@ -23,6 +23,7 @@ It uses the following:
 * `REACT_APP_ETH_PROVIDER_URL` — The url of the eth `HttpProvider`.
 * `REACT_APP_CROWDSALE_ADDRESS` — The address of the `SelfKey Crowdsale` contract
 * `REACT_APP_TOKEN_ADDRESS` — The address of the `KEY` token
+* `REACT_APP_PRIVATE_KEY` — The private key of the contracts' owner (Note this is not really very secure to expose this within the app so we'll do this differently if we use this code for something real)
 
 ### Prerequisites
 
