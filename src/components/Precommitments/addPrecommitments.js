@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 
 import signedTransaction from '../../utils/signedTransaction'
 import makeAction from '../../utils/actionMaker'
-import parsePrecommitmentCSV from '../../parsePrecommitmentCSV'
+import parsePrecommitmentCSV from '../../utils/parsePrecommitmentCSV'
 
 import {
   PRECOMMITMENTS_BULK_ADD,
