@@ -2,7 +2,8 @@ import { arrayOf, oneOf, oneOfType, bool, shape, string } from 'prop-types'
 
 export const navigationShape = {
   lhs: {
-    // put nav items here
+    kyc: string.isRequired,
+    precommitments: string.isRequired
   },
   rhs: {
     // put nav items here

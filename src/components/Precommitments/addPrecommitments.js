@@ -1,6 +1,8 @@
+import BigNumber from 'bignumber.js'
+
 import signedTransaction from '../../utils/signedTransaction'
 import makeAction from '../../utils/actionMaker'
-import BigNumber from 'bignumber.js'
+import parsePrecommitmentCSV from '../../utils/parsePrecommitmentCSV'
 
 import {
   PRECOMMITMENTS_BULK_ADD,
@@ -14,18 +16,6 @@ import {
 import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 const { invalidData, notCrowdsaleOwner } = ERRORS
 
-const parse = data => {
-  const lines = data.split('\n')
-  return lines.map(line => {
-    const items = line.split(',')
-    return {
-      beneficiary: items[0],
-      tokensAllocated: items[1], // string
-      halfVesting: items[2] === 'YES'
-    }
-  })
-}
-
 const addPrecommitments = (data, abi) => async (dispatch, getState) => {
   const { owner: { isOwner, address } } = getState()
   if (!isOwner) {
@@ -33,7 +23,7 @@ const addPrecommitments = (data, abi) => async (dispatch, getState) => {
   } else if (!data || data === '') {
     dispatch(makeAction(PRECOMMITMENTS_BULK_ADD_FAIL, invalidData))
   } else {
-    const parsedData = parse(data)
+    const parsedData = parsePrecommitmentCSV(data)
     dispatch(makeAction(PRECOMMITMENTS_BULK_ADD, parsedData))
     try {
       const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
