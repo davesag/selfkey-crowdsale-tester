@@ -1,4 +1,4 @@
-import contractAccess from '../../utils/contractAccess'
+import signedTransaction from '../../utils/signedTransaction'
 import makeAction from '../../utils/actionMaker'
 import { KYC_VERIFY, KYC_VERIFY_SUCCESS, KYC_VERIFY_FAIL } from './actions'
 
@@ -15,8 +15,8 @@ const verifyKYC = (addressToVerify, abi) => async (dispatch, getState) => {
   } else {
     dispatch(makeAction(KYC_VERIFY, addressToVerify))
     try {
-      const crowdsale = contractAccess(CROWDSALE_ADDRESS, abi)
-      await crowdsale.verifyKYC(addressToVerify, { from: address })
+      const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
+      await signTx('verifyKYC', addressToVerify)
       dispatch(makeAction(KYC_VERIFY_SUCCESS))
     } catch (err) {
       console.error(err)

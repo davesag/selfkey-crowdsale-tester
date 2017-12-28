@@ -53,20 +53,6 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "legalExpensesWallet",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
     "name": "MIN_TOKEN_UNIT",
     "outputs": [
       {
@@ -192,6 +178,34 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "FOUNDATION_POOL_ADDR",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "FOUNDERS_POOL_ADDR",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "TOTAL_SUPPLY_CAP",
     "outputs": [
       {
@@ -210,20 +224,6 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "wallet",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -267,20 +267,6 @@
     "constant": true,
     "inputs": [],
     "name": "timelockFounders2",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "foundersPool",
     "outputs": [
       {
         "name": "",
@@ -351,6 +337,20 @@
     "constant": true,
     "inputs": [],
     "name": "owner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "CROWDSALE_WALLET_ADDR",
     "outputs": [
       {
         "name": "",
@@ -584,20 +584,6 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "foundationPool",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
     "name": "PURCHASER_MAX_CAP_USD",
     "outputs": [
       {
@@ -640,6 +626,20 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "LEGAL_EXPENSES_ADDR",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "ethPrice",
     "outputs": [
       {
@@ -660,22 +660,6 @@
       {
         "name": "_endTime",
         "type": "uint64"
-      },
-      {
-        "name": "_wallet",
-        "type": "address"
-      },
-      {
-        "name": "_foundationPool",
-        "type": "address"
-      },
-      {
-        "name": "_foundersPool",
-        "type": "address"
-      },
-      {
-        "name": "_legalExpensesWallet",
-        "type": "address"
       },
       {
         "name": "_goal",
