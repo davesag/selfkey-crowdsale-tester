@@ -41,14 +41,17 @@ const addPrecommitment = (
     )
     try {
       const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
-      await signTx(
+      const tx = await signTx(
         'addPrecommitment',
         beneficiary,
         tokensAllocated,
         halfVesting
       )
+      console.debug('addPrecommitment tx', tx)
       dispatch(makeAction(PRECOMMITMENT_ADD_SUCCESS))
     } catch (err) {
+      console.error(err)
+      if (err.tx) console.error(err.tx)
       dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, err.message))
     }
   }

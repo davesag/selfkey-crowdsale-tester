@@ -4,15 +4,18 @@ import PropTypes from 'prop-types'
 import stringIfNotNull from '../../utils/stringIfNotNull'
 import { bigNumberShape } from '../../utils/shapes'
 
-const CrowdsaleStats = ({ tokensPurchased }) => (
+const CrowdsaleStats = ({ tokensPurchased, isFinalized }) => (
   <dl className="dl-horizontal" id="crowdsale-stats">
     <dt>Tokens Purchased</dt>
     <dd>{stringIfNotNull(tokensPurchased)}</dd>
+    <dt>Crowdsale Finalized</dt>
+    <dd>{isFinalized ? 'Yes' : 'No'}</dd>
   </dl>
 )
 
 CrowdsaleStats.propTypes = {
-  tokensPurchased: PropTypes.shape(bigNumberShape).isRequired
+  tokensPurchased: PropTypes.shape(bigNumberShape).isRequired,
+  isFinalized: PropTypes.bool.isRequired
 }
 
 export default CrowdsaleStats

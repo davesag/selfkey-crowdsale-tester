@@ -19,12 +19,14 @@ const getCrowdsaleData = abi => async dispatch => {
     const crowdsale = contractAccess(CROWDSALE_ADDRESS, abi)
     const startTime = getNumber(await crowdsale.startTime()) * 1000
     const endTime = getNumber(await crowdsale.endTime()) * 1000
+    const isFinalized = (await crowdsale.isFinalized())[0]
     const tokensPurchased = getBigNumber(await crowdsale.totalPurchased())
     dispatch(
       makeAction(CROWDSALE_DATA_GET_SUCCESS, {
         startTime,
         endTime,
-        tokensPurchased
+        tokensPurchased,
+        isFinalized
       })
     )
   } catch (err) {
