@@ -1,8 +1,10 @@
+const cstSupported = () => typeof Error.captureStackTrace === 'function'
+
 class TxError extends Error {
   constructor(message, tx) {
     super(message)
     this.tx = tx
-    Error.captureStackTrace(this, TxError)
+    if (cstSupported()) Error.captureStackTrace(this, TxError)
   }
 }
 
