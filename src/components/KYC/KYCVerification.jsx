@@ -6,7 +6,6 @@ import { Form, FormGroup, Col, Button } from 'react-bootstrap'
 
 import { ZERO_ADDRESS } from '../../constants'
 
-import { abiPropType } from '../../utils/shapes'
 import verifyKYC from './verifyKYC'
 import unverifyKYC from './unverifyKYC'
 
@@ -18,8 +17,7 @@ const KYCVerification = ({
   verifyButtonLabel,
   unverifyButtonLabel,
   error,
-  address,
-  abi
+  address
 }) => (
   <Form className="form-horizontal" id="kyc-verification">
     <h3>KYC Verification</h3>
@@ -36,7 +34,7 @@ const KYCVerification = ({
       <Col xs={3}>
         <Button
           bsStyle="success"
-          onClick={doVerifyKYC(abi)}
+          onClick={doVerifyKYC}
           disabled={unverifying || verifying}
         >
           {verifyButtonLabel}
@@ -47,14 +45,14 @@ const KYCVerification = ({
       <Col xs={3} xsOffset={3}>
         <Button
           bsStyle="danger"
-          onClick={doUnverifyKYC(abi)}
+          onClick={doUnverifyKYC}
           disabled={unverifying || verifying}
         >
           {unverifyButtonLabel}
         </Button>
       </Col>
     </FormGroup>
-    {error && <p className="danger">{error}</p>}
+    {error && <p className="text-warning">{error}</p>}
   </Form>
 )
 
@@ -66,8 +64,7 @@ KYCVerification.propTypes = {
   verifyButtonLabel: PropTypes.string,
   unverifyButtonLabel: PropTypes.string,
   error: PropTypes.string,
-  address: PropTypes.string,
-  abi: abiPropType.isRequired
+  address: PropTypes.string
 }
 
 KYCVerification.defaultPropTypes = {
@@ -90,10 +87,8 @@ const mapStateToProps = ({ kyc }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  doVerifyKYC: abi => evt =>
-    dispatch(verifyKYC(evt.target.form.address.value, abi)),
-  doUnverifyKYC: abi => evt =>
-    dispatch(unverifyKYC(evt.target.form.address.value, abi))
+  doVerifyKYC: evt => dispatch(verifyKYC(evt.target.form.address.value)),
+  doUnverifyKYC: evt => dispatch(unverifyKYC(evt.target.form.address.value))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(KYCVerification)

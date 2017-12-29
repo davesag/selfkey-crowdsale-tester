@@ -24,11 +24,8 @@ class ABI extends React.Component {
       console.error('found errors', errors)
       return null
     }
-    if (Object.keys(abis).length !== contracts.length) {
-      console.debug('have not loaded ABIs yet')
-      return null
-    }
-    return <section id="abis">{this.props.children({ abis })}</section>
+    if (Object.keys(abis).length !== contracts.length) return null
+    return <section id="abis">{this.props.children()}</section>
   }
 }
 

@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import { Form, FormGroup, Col, Button } from 'react-bootstrap'
 
-import { abiPropType } from '../../utils/shapes'
 import addPrecommitments from './addPrecommitments'
 
 const BulkAddPrecommitments = ({
@@ -12,8 +11,7 @@ const BulkAddPrecommitments = ({
   adding,
   buttonLabel,
   error,
-  data,
-  abi
+  data
 }) => (
   <Form className="form-horizontal" id="add-precommitment">
     <h3>Bulk Add Precommitments</h3>
@@ -33,14 +31,14 @@ const BulkAddPrecommitments = ({
         <br />
         <Button
           bsStyle="success"
-          onClick={doAddPrecommitments(abi)}
+          onClick={doAddPrecommitments}
           disabled={adding}
         >
           {buttonLabel}
         </Button>
       </Col>
     </FormGroup>
-    {error && <p className="danger">{error}</p>}
+    {error && <p className="text-warning">Error: {error}</p>}
   </Form>
 )
 
@@ -49,8 +47,7 @@ BulkAddPrecommitments.propTypes = {
   adding: PropTypes.bool,
   buttonLabel: PropTypes.string,
   error: PropTypes.string,
-  data: PropTypes.string,
-  abi: abiPropType.isRequired
+  data: PropTypes.string
 }
 
 BulkAddPrecommitments.defaultPropTypes = {
@@ -60,7 +57,7 @@ BulkAddPrecommitments.defaultPropTypes = {
   data: null
 }
 
-const mapStateToProps = ({ data, ...precommitments }) => ({
+const mapStateToProps = ({ precommitments: { data, ...precommitments } }) => ({
   ...precommitments,
   data: data ? data.map(d => d.join(',')).join('\n') : null,
   buttonLabel: precommitments.adding
@@ -69,9 +66,8 @@ const mapStateToProps = ({ data, ...precommitments }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  doAddPrecommitments: abi => evt => {
-    dispatch(addPrecommitments(evt.target.form.data.value, abi))
-  }
+  doAddPrecommitments: evt =>
+    dispatch(addPrecommitments(evt.target.form.data.value))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(

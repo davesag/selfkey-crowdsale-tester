@@ -1,20 +1,20 @@
 import React from 'react'
 
-import PageWithCrowdsale from '../components/PageWithCrowdsale.jsx'
+import PageWithOwner from '../components/PageWithOwner.jsx'
 import Owner from '../components/Owner/Owner.jsx'
 import StatusCheck from '../components/StatusCheck/StatusCheck.jsx'
 import KYCVerification from '../components/KYC/KYCVerification.jsx'
 
 const KYC = () => (
-  <PageWithCrowdsale slug="kyc" title="Selfkey Crowdsale: KYC" heading="KYC">
-    {({ SelfkeyCrowdsale, isOwner }) => (
+  <PageWithOwner slug="kyc" title="Selfkey Crowdsale: KYC" heading="KYC">
+    {({ isOwner }) => (
       <section>
         <Owner isOwner={isOwner} />
-        <StatusCheck abi={SelfkeyCrowdsale} />
-        {isOwner && <KYCVerification abi={SelfkeyCrowdsale} />}
+        <StatusCheck />
+        {isOwner && <KYCVerification />}
       </section>
     )}
-  </PageWithCrowdsale>
+  </PageWithOwner>
 )
 
 export default KYC

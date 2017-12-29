@@ -6,8 +6,11 @@ import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 
 const { invalidAddress, notCrowdsaleOwner } = ERRORS
 
-const verifyKYC = (addressToVerify, abi) => async (dispatch, getState) => {
-  const { owner: { address, isOwner } } = getState()
+const verifyKYC = addressToVerify => async (dispatch, getState) => {
+  const {
+    owner: { address, isOwner },
+    contract: { SelfkeyCrowdsale }
+  } = getState()
   if (!addressToVerify || addressToVerify === '') {
     dispatch(makeAction(KYC_VERIFY_FAIL, invalidAddress))
   } else if (!isOwner) {
@@ -15,7 +18,11 @@ const verifyKYC = (addressToVerify, abi) => async (dispatch, getState) => {
   } else {
     dispatch(makeAction(KYC_VERIFY, addressToVerify))
     try {
-      const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
+      const signTx = signedTransaction(
+        SelfkeyCrowdsale.abi,
+        CROWDSALE_ADDRESS,
+        address
+      )
       const tx = await signTx('verifyKYC', addressToVerify)
       console.debug('verifyKYC tx', tx)
       dispatch(makeAction(KYC_VERIFY_SUCCESS))

@@ -18,11 +18,14 @@ const {
 const addPrecommitment = (
   beneficiary,
   rawTokensAllocated,
-  halfVestingString,
-  abi
+  halfVestingString
 ) => async (dispatch, getState) => {
-  const { owner: { isOwner, address } } = getState()
-  const tokensAllocated = BigNumber(rawTokensAllocated)
+  const {
+    owner: { address, isOwner },
+    contract: { SelfkeyCrowdsale }
+  } = getState()
+
+  const tokensAllocated = BigNumber(rawTokensAllocated || '0')
   const halfVesting = halfVestingString === 'true'
 
   if (!isOwner) {
@@ -40,7 +43,11 @@ const addPrecommitment = (
       })
     )
     try {
-      const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
+      const signTx = signedTransaction(
+        SelfkeyCrowdsale.abi,
+        CROWDSALE_ADDRESS,
+        address
+      )
       const tx = await signTx(
         'addPrecommitment',
         beneficiary,
