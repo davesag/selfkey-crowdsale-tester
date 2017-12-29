@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 
-import { abiPropType } from '../../utils/shapes'
 import getOwner from './getOwner'
 
 class OwnerData extends React.Component {
   componentWillMount() {
-    const { abi, doGetOwner } = this.props
-    doGetOwner(abi)
+    const { doGetOwner } = this.props
+    doGetOwner()
   }
 
   render() {
@@ -23,7 +22,6 @@ class OwnerData extends React.Component {
 OwnerData.propTypes = {
   children: PropTypes.func.isRequired,
   doGetOwner: PropTypes.func.isRequired,
-  abi: abiPropType.isRequired,
   isOwner: PropTypes.bool,
   loading: PropTypes.bool,
   error: PropTypes.string
@@ -42,7 +40,7 @@ const mapStateToProps = ({ owner: { loading, error, isOwner } }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  doGetOwner: abi => dispatch(getOwner(abi))
+  doGetOwner: () => dispatch(getOwner())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(OwnerData)

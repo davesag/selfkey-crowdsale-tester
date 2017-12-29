@@ -10,16 +10,21 @@ import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 
 const { notCrowdsaleOwner } = ERRORS
 
-const finalizeCrowdsale = abi => async (dispatch, getState) => {
-  console.debug('finalizing crowdsale')
-
-  const { owner: { address, isOwner } } = getState()
+const finalizeCrowdsale = () => async (dispatch, getState) => {
+  const {
+    owner: { address, isOwner },
+    contract: { SelfkeyCrowdsale }
+  } = getState()
   if (!isOwner) {
     dispatch(makeAction(CROWDSALE_FINALIZE_FAIL, notCrowdsaleOwner))
   } else {
     dispatch(makeAction(CROWDSALE_FINALIZE))
     try {
-      const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
+      const signTx = signedTransaction(
+        SelfkeyCrowdsale.abi,
+        CROWDSALE_ADDRESS,
+        address
+      )
       const tx = await signTx('finalize')
       console.debug('finalise tx', tx)
       dispatch(makeAction(CROWDSALE_FINALIZE_SUCCESS))

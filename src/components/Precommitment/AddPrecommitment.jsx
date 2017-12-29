@@ -6,7 +6,6 @@ import { Form, FormGroup, Col, Button } from 'react-bootstrap'
 
 import { ZERO_ADDRESS } from '../../constants'
 
-import { abiPropType } from '../../utils/shapes'
 import stringIfNotNull from '../../utils/stringIfNotNull'
 
 import addPrecommitment from './addPrecommitment'
@@ -18,8 +17,7 @@ const AddPrecommitment = ({
   error,
   beneficiary,
   tokensAllocated,
-  halfVesting,
-  abi
+  halfVesting
 }) => (
   <Form className="form-horizontal" id="add-precommitment">
     <h3>Add Precommitment</h3>
@@ -67,14 +65,14 @@ const AddPrecommitment = ({
         <br />
         <Button
           bsStyle="success"
-          onClick={doAddPrecommitment(abi)}
+          onClick={doAddPrecommitment}
           disabled={adding}
         >
           {buttonLabel}
         </Button>
       </Col>
     </FormGroup>
-    {error && <p className="danger">{error}</p>}
+    {error && <p className="text-warning">{error}</p>}
   </Form>
 )
 
@@ -85,8 +83,7 @@ AddPrecommitment.propTypes = {
   error: PropTypes.string,
   beneficiary: PropTypes.string,
   tokensAllocated: PropTypes.string,
-  halfVesting: PropTypes.oneOf(['true', 'false']),
-  abi: abiPropType.isRequired
+  halfVesting: PropTypes.oneOf(['true', 'false'])
 }
 
 AddPrecommitment.defaultPropTypes = {
@@ -99,9 +96,7 @@ AddPrecommitment.defaultPropTypes = {
 }
 
 const mapStateToProps = ({
-  tokensAllocated,
-  halfVesting,
-  ...precommitment
+  precommitment: { tokensAllocated, halfVesting, ...precommitment }
 }) => ({
   ...precommitment,
   halfVesting: stringIfNotNull(halfVesting),
@@ -112,14 +107,13 @@ const mapStateToProps = ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  doAddPrecommitment: abi => evt => {
+  doAddPrecommitment: evt => {
     const { beneficiary, tokensAllocated, halfVesting } = evt.target.form
     dispatch(
       addPrecommitment(
         beneficiary.value, // string — address
         tokensAllocated.value, // string
-        halfVesting.value, // string YES or NO
-        abi
+        halfVesting.value // string YES or NO
       )
     )
   }

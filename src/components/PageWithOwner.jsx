@@ -10,7 +10,7 @@ import OwnerData from './Owner/OwnerData.jsx'
 
 const CONTRACTS = ['SelfkeyCrowdsale', 'SelfkeyToken']
 
-const PageWithCrowdsale = ({ slug, title, heading, children }) => (
+const PageWithOwner = ({ slug, title, heading, children }) => (
   <Page>
     {() => (
       <section id={slug}>
@@ -21,18 +21,11 @@ const PageWithCrowdsale = ({ slug, title, heading, children }) => (
               <Col xs={12}>
                 <h2>{heading}</h2>
                 <ABI contracts={CONTRACTS}>
-                  {({ abis }) => {
-                    const { SelfkeyCrowdsale } = abis
-                    if (!SelfkeyCrowdsale)
-                      return <p>Missing Crowdsale Contract ABI</p>
-                    return (
-                      <OwnerData abi={SelfkeyCrowdsale}>
-                        {({ isOwner }) =>
-                          children({ SelfkeyCrowdsale, isOwner })
-                        }
-                      </OwnerData>
-                    )
-                  }}
+                  {() => (
+                    <OwnerData>
+                      {({ isOwner }) => children({ isOwner })}
+                    </OwnerData>
+                  )}
                 </ABI>
               </Col>
             </Row>
@@ -43,11 +36,11 @@ const PageWithCrowdsale = ({ slug, title, heading, children }) => (
   </Page>
 )
 
-PageWithCrowdsale.propTypes = {
+PageWithOwner.propTypes = {
   slug: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired
 }
 
-export default PageWithCrowdsale
+export default PageWithOwner

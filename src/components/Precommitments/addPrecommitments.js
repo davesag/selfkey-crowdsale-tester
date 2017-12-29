@@ -16,8 +16,11 @@ import {
 import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 const { invalidData, notCrowdsaleOwner } = ERRORS
 
-const addPrecommitments = (data, abi) => async (dispatch, getState) => {
-  const { owner: { isOwner, address } } = getState()
+const addPrecommitments = data => async (dispatch, getState) => {
+  const {
+    owner: { address, isOwner },
+    contract: { SelfkeyCrowdsale }
+  } = getState()
   if (!isOwner) {
     dispatch(makeAction(PRECOMMITMENTS_BULK_ADD_FAIL, notCrowdsaleOwner))
   } else if (!data || data === '') {
@@ -26,7 +29,11 @@ const addPrecommitments = (data, abi) => async (dispatch, getState) => {
     const parsedData = parsePrecommitmentCSV(data)
     dispatch(makeAction(PRECOMMITMENTS_BULK_ADD, parsedData))
     try {
-      const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
+      const signTx = signedTransaction(
+        SelfkeyCrowdsale.abi,
+        CROWDSALE_ADDRESS,
+        address
+      )
       await Promise.all(
         parsedData.map(async item => {
           const { beneficiary, tokensAllocated, halfVesting } = item

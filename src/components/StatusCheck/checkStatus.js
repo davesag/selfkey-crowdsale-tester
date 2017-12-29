@@ -10,13 +10,15 @@ import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 
 const { invalidAddress } = ERRORS
 
-const checkStatus = (address, abi) => async dispatch => {
+const checkStatus = address => async (dispatch, getState) => {
+  const { contract: { SelfkeyCrowdsale } } = getState()
+
   if (!address || address === '') {
     dispatch(makeAction(STATUS_CHECK_FAIL, invalidAddress))
   } else {
     dispatch(makeAction(STATUS_CHECK, address))
     try {
-      const crowdsale = contractAccess(CROWDSALE_ADDRESS, abi)
+      const crowdsale = contractAccess(CROWDSALE_ADDRESS, SelfkeyCrowdsale.abi)
       const result = await crowdsale.kycVerified(address)
       dispatch(makeAction(STATUS_CHECK_SUCCESS, result[0]))
     } catch (err) {

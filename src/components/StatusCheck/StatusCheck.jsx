@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import { Form, FormGroup, Col, Button } from 'react-bootstrap'
 
-import { abiPropType } from '../../utils/shapes'
 import { ZERO_ADDRESS } from '../../constants'
 
 import checkStatus from './checkStatus'
@@ -15,8 +14,7 @@ const StatusCheck = ({
   status,
   buttonLabel,
   error,
-  address,
-  abi
+  address
 }) => (
   <Form className="form-horizontal" id="status-check">
     <h3>KYC Status Check</h3>
@@ -31,7 +29,7 @@ const StatusCheck = ({
         />
       </Col>
       <Col xs={3}>
-        <Button onClick={doCheckStatus(abi)} disabled={checkingStatus}>
+        <Button onClick={doCheckStatus} disabled={checkingStatus}>
           {buttonLabel}
         </Button>
       </Col>
@@ -44,13 +42,12 @@ const StatusCheck = ({
           <b>{status ? 'is verified' : 'is not verified'}</b>
         </p>
       )}
-    {error && <p className="danger">{error}</p>}
+    {error && <p className="text-warning">{error}</p>}
   </Form>
 )
 
 StatusCheck.propTypes = {
   doCheckStatus: PropTypes.func.isRequired,
-  abi: abiPropType.isRequired,
   checkingStatus: PropTypes.bool,
   status: PropTypes.bool,
   buttonLabel: PropTypes.string,
@@ -74,8 +71,7 @@ const mapStateToProps = ({ statusCheck }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  doCheckStatus: abi => evt =>
-    dispatch(checkStatus(evt.target.form.address.value, abi))
+  doCheckStatus: evt => dispatch(checkStatus(evt.target.form.address.value))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StatusCheck)

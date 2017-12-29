@@ -6,25 +6,17 @@ import { connect } from 'react-redux'
 import { Button, FormGroup } from 'react-bootstrap'
 
 import finalizeCrowdsale from './finalizeCrowdsale'
-import { abiPropType } from '../../utils/shapes'
 
-const FinalizeCrowdsale = ({
-  abi,
-  doFinalize,
-  finalizing,
-  error,
-  buttonLabel
-}) => (
+const FinalizeCrowdsale = ({ doFinalize, finalizing, error, buttonLabel }) => (
   <FormGroup className={error ? 'has-error' : null}>
-    <Button bsStyle="warning" disabled={finalizing} onClick={doFinalize(abi)}>
+    <Button bsStyle="warning" disabled={finalizing} onClick={doFinalize}>
       {buttonLabel}
     </Button>
-    {error && <p>{error}</p>}
+    {error && <p className="text-warning">Error: {error}</p>}
   </FormGroup>
 )
 
 FinalizeCrowdsale.propTypes = {
-  abi: abiPropType.isRequired,
   doFinalize: PropTypes.func.isRequired,
   finalizing: PropTypes.bool,
   buttonLabel: PropTypes.string,
@@ -46,7 +38,7 @@ const mapStateToProps = ({ finalize: { finalizing, error } }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  doFinalize: abi => () => dispatch(finalizeCrowdsale(abi))
+  doFinalize: () => dispatch(finalizeCrowdsale())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FinalizeCrowdsale)
