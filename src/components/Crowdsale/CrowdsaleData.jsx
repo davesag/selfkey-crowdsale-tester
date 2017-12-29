@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 
-import { abiPropType } from '../../utils/shapes'
+import { abiPropType, bigNumberShape } from '../../utils/shapes'
 import getCrowdsaleData from './getCrowdsaleData'
 
 class CrowdsaleData extends React.Component {
   componentWillMount() {
     const { abi, doGetCrowdsaleData } = this.props
-    console.debug('abi', abi)
     doGetCrowdsaleData(abi)
   }
 
@@ -41,7 +40,7 @@ CrowdsaleData.propTypes = {
   error: PropTypes.string,
   startTime: PropTypes.number,
   endTime: PropTypes.number,
-  tokensPurchased: PropTypes.number
+  tokensPurchased: PropTypes.shape(bigNumberShape)
 }
 
 CrowdsaleData.defaultPropTypes = {

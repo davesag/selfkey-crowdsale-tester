@@ -18,11 +18,12 @@ const {
 const addPrecommitment = (
   beneficiary,
   rawTokensAllocated,
-  halfVesting = false,
+  halfVestingString,
   abi
 ) => async (dispatch, getState) => {
   const { owner: { isOwner, address } } = getState()
   const tokensAllocated = BigNumber(rawTokensAllocated)
+  const halfVesting = halfVestingString === 'true'
 
   if (!isOwner) {
     dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, notCrowdsaleOwner))

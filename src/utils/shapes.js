@@ -1,4 +1,12 @@
-import { arrayOf, oneOf, oneOfType, bool, shape, string } from 'prop-types'
+import {
+  arrayOf,
+  oneOf,
+  oneOfType,
+  bool,
+  shape,
+  string,
+  number
+} from 'prop-types'
 
 export const navigationShape = {
   lhs: {
@@ -54,10 +62,8 @@ export const abiPropType = arrayOf(
   ])
 )
 
-export const validAbis = (props, propName) => {
-  const abis = props[propName]
-  Object.keys(abis).forEach(abi => {
-    const isErr = abiPropType(abi)
-    if (isErr) return isErr
-  })
+export const bigNumberShape = {
+  s: oneOf([1]), // must be positive
+  e: number.isRequired,
+  c: arrayOf(number).isRequired
 }

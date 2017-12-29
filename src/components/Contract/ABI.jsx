@@ -3,14 +3,13 @@ import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 
-import { validAbis } from '../../utils/shapes'
 import loadABI from './loadABI'
 
 class ABI extends React.Component {
   componentWillMount() {
-    const { contracts, doLoadABI } = this.props
+    const { contracts, abis, doLoadABI } = this.props
     contracts.forEach(contract => {
-      doLoadABI(contract)
+      if (!abis[contract]) doLoadABI(contract)
     })
   }
 
@@ -39,7 +38,7 @@ ABI.propTypes = {
   doLoadABI: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   errors: PropTypes.arrayOf(PropTypes.string),
-  abis: validAbis
+  abis: PropTypes.shape({}) // custom validator no longer supported.
 }
 
 ABI.defaultProps = {
