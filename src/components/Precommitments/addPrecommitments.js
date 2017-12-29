@@ -32,12 +32,13 @@ const addPrecommitments = (data, abi) => async (dispatch, getState) => {
           const { beneficiary, tokensAllocated, halfVesting } = item
           dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD, item))
           try {
-            await signTx(
+            const tx = await signTx(
               'addPrecommitment',
               beneficiary,
               BigNumber(tokensAllocated),
               halfVesting
             )
+            console.debug('addPrecommitment tx', tx)
             dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD_SUCCESS, item))
           } catch (errr) {
             dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD_FAIL, errr.message))
@@ -47,6 +48,8 @@ const addPrecommitments = (data, abi) => async (dispatch, getState) => {
       )
       dispatch(makeAction(PRECOMMITMENTS_BULK_ADD_SUCCESS))
     } catch (err) {
+      console.error(err)
+      if (err.tx) console.error(err.tx)
       dispatch(makeAction(PRECOMMITMENTS_BULK_ADD_FAIL, err.message))
     }
   }

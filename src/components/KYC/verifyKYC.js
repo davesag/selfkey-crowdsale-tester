@@ -16,10 +16,12 @@ const verifyKYC = (addressToVerify, abi) => async (dispatch, getState) => {
     dispatch(makeAction(KYC_VERIFY, addressToVerify))
     try {
       const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
-      await signTx('verifyKYC', addressToVerify)
+      const tx = await signTx('verifyKYC', addressToVerify)
+      console.debug('verifyKYC tx', tx)
       dispatch(makeAction(KYC_VERIFY_SUCCESS))
     } catch (err) {
       console.error(err)
+      if (err.tx) console.error(err.tx)
       dispatch(makeAction(KYC_VERIFY_FAIL, err.message))
     }
   }

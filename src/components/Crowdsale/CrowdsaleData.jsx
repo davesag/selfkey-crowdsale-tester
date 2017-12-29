@@ -13,7 +13,14 @@ class CrowdsaleData extends React.Component {
   }
 
   render() {
-    const { loading, error, startTime, endTime, tokensPurchased } = this.props
+    const {
+      loading,
+      error,
+      startTime,
+      endTime,
+      tokensPurchased,
+      isFinalized
+    } = this.props
     if (loading) return <p>loading crowdsale data</p>
     if (error) return <p>error: {error}</p>
     if (startTime === null || endTime === null || tokensPurchased === null) {
@@ -25,7 +32,8 @@ class CrowdsaleData extends React.Component {
         {this.props.children({
           startTime,
           endTime,
-          tokensPurchased
+          tokensPurchased,
+          isFinalized
         })}
       </section>
     )
@@ -40,7 +48,8 @@ CrowdsaleData.propTypes = {
   error: PropTypes.string,
   startTime: PropTypes.number,
   endTime: PropTypes.number,
-  tokensPurchased: PropTypes.shape(bigNumberShape)
+  tokensPurchased: PropTypes.shape(bigNumberShape),
+  isFinalized: PropTypes.bool
 }
 
 CrowdsaleData.defaultPropTypes = {
@@ -48,18 +57,11 @@ CrowdsaleData.defaultPropTypes = {
   error: null,
   startTime: null,
   endTime: null,
-  tokensPurchased: null
+  tokensPurchased: null,
+  isFinalized: null
 }
 
-const mapStateToProps = ({
-  crowdsale: { loading, error, startTime, endTime, tokensPurchased }
-}) => ({
-  loading,
-  error,
-  startTime,
-  endTime,
-  tokensPurchased
-})
+const mapStateToProps = ({ crowdsale }) => ({ ...crowdsale })
 
 const mapDispatchToProps = dispatch => ({
   doGetCrowdsaleData: abi => dispatch(getCrowdsaleData(abi))

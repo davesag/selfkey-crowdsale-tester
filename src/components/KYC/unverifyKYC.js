@@ -20,10 +20,12 @@ const unverifyKYC = (addressToUnverify, abi) => async (dispatch, getState) => {
     dispatch(makeAction(KYC_UNVERIFY, addressToUnverify))
     try {
       const signTx = signedTransaction(abi, CROWDSALE_ADDRESS, address)
-      await signTx('rejectKYC', addressToUnverify)
+      const tx = await signTx('rejectKYC', addressToUnverify)
+      console.debug('rejectKYC tx', tx)
       dispatch(makeAction(KYC_UNVERIFY_SUCCESS))
     } catch (err) {
       console.error(err)
+      if (err.tx) console.error(err.tx)
       dispatch(makeAction(KYC_UNVERIFY_FAIL, err.message))
     }
   }
