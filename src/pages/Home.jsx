@@ -16,14 +16,25 @@ const Home = () => (
     heading="Selfkey Crowdsale Stats"
   >
     {({ SelfkeyCrowdsale, isOwner }) => (
-      <CrowdsaleData abi={SelfkeyCrowdsale}>
-        {({ startTime, endTime, tokensPurchased, isFinalized }) => (
+      <CrowdsaleData>
+        {({
+          startTime,
+          endTime,
+          tokensPurchased,
+          isFinalized,
+          foundationBalance,
+          foundersBalance,
+          walletBalance
+        }) => (
           <section>
             <Owner isOwner={isOwner} />
             <CrowdsaleDates startDate={startTime} endDate={endTime} />
             <CrowdsaleStats
               tokensPurchased={tokensPurchased}
               isFinalized={isFinalized}
+              foundationBalance={foundationBalance}
+              foundersBalance={foundersBalance}
+              walletBalance={walletBalance}
             />
             {showFinalizeButton(isOwner, isFinalized) && (
               <FinalizeCrowdsale abi={SelfkeyCrowdsale} />

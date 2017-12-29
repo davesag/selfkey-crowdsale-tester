@@ -9,7 +9,10 @@ const INITIAL_STATE = {
   error: null,
   startTime: null,
   endTime: null,
-  tokensPurchased: null
+  tokensPurchased: null,
+  foundationBalance: null,
+  foundersBalance: null,
+  walletBalance: null
 }
 
 const reducer = (state = INITIAL_STATE, action) => {
