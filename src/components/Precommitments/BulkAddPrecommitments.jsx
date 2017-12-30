@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Form, FormGroup, Col, Button } from 'react-bootstrap'
 
 import addPrecommitments from './addPrecommitments'
+import { toString } from '../../utils/precommitmentCSV'
 
 const BulkAddPrecommitments = ({
   doAddPrecommitments,
@@ -59,7 +60,7 @@ BulkAddPrecommitments.defaultPropTypes = {
 
 const mapStateToProps = ({ precommitments: { data, ...precommitments } }) => ({
   ...precommitments,
-  data: data ? data.map(d => d.join(',')).join('\n') : null,
+  data: toString(data),
   buttonLabel: precommitments.adding
     ? 'Adding Precommitments'
     : BulkAddPrecommitments.defaultPropTypes.buttonLabel
