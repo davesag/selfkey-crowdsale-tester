@@ -1,5 +1,7 @@
 # SelfKey Crowdsale Test UI
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/SelfKeyFoundation/crowdsale-tester.svg)](https://greenkeeper.io/)
+
 The Test UI for the SelfKey Crowdsale
 
 Deployed to http://selfkey-crowdsale-tester.netlify.com
