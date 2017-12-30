@@ -1,13 +1,12 @@
 # SelfKey Crowdsale Test UI
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/SelfKeyFoundation/crowdsale-tester.svg)](https://greenkeeper.io/)
-
 The Test UI for the SelfKey Crowdsale
 
 Deployed to http://selfkey-crowdsale-tester.netlify.com
 
-* `develop` [![Build Status](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester.svg?branch=develop)](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester)
-* `master` [![Build Status](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester.svg?branch=master)](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester)
+* `develop` [![Build Status](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester.svg?branch=develop)](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester)[![Greenkeeper badge](https://badges.greenkeeper.io/SelfKeyFoundation/crowdsale-tester.svg?branch=develop)](https://greenkeeper.io/)
+
+* `master` [![Build Status](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester.svg?branch=master)](https://www.travis-ci.org/SelfKeyFoundation/crowdsale-tester)[![Greenkeeper badge](https://badges.greenkeeper.io/SelfKeyFoundation/crowdsale-tester.svg?branch=master)](https://greenkeeper.io/)
 
 ## Development
 
@@ -38,16 +37,30 @@ Run
 
     npm install
 
-Now run `npm start` to start the development web server on port `3000`
+Then run
+
+    npm start
+
+This will start the development web server on port `3000` and launch your browser.  Use Chrome or Firefox with the MetaMask extension enabled and logged in.
+
+*You will need the full owner passphrase to use this tool.*
 
 ### Test it
 
 * `npm test` — runs the unit tests (quick)
+* `npm test:coverage` — runs instrumented unit tests and performs code coverage analysis.
+* `npm test:debug` — to debug your unit tests interactively.
 
 ### Lint it
 
     npm run lint
 
+or
+
+    npm run lint -- --fix
+
+_note the double `-- --`_
+
 ## Contributing
 
-Contributions are welcomed.  Please see the attached [CONTRIBUTING notes](CONTRIBUTING.md).
+Contributions are welcomed. Please see the attached [CONTRIBUTING notes](CONTRIBUTING.md).

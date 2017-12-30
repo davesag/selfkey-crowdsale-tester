@@ -20,7 +20,7 @@ const reducer = (state = INITIAL_STATE, action) => {
   switch (type) {
     case CROWDSALE_DATA_GET: {
       return {
-        ...INITIAL_STATE,
+        ...state,
         loading: true
       }
     }
