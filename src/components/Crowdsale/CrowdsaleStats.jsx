@@ -22,7 +22,7 @@ const CrowdsaleStats = ({
     <dt>Wallet Balance</dt>
     <dd>{stringIfNotNull(walletBalance)}</dd>
     <dt>Crowdsale Finalized</dt>
-    <dd>{yesNoIfNotNull(isFinalized)}</dd>
+    <dd>{yesNoIfNotNull(isFinalized, 'Yes', 'No')}</dd>
   </dl>
 )
 
