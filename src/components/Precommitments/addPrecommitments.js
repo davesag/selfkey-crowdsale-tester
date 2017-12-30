@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 
 import signedTransaction from '../../utils/signedTransaction'
 import makeAction from '../../utils/actionMaker'
-import parsePrecommitmentCSV from '../../utils/parsePrecommitmentCSV'
+import { parse } from '../../utils/precommitmentCSV'
 
 import {
   PRECOMMITMENTS_BULK_ADD,
@@ -26,7 +26,7 @@ const addPrecommitments = data => async (dispatch, getState) => {
   } else if (!data || data === '') {
     dispatch(makeAction(PRECOMMITMENTS_BULK_ADD_FAIL, invalidData))
   } else {
-    const parsedData = parsePrecommitmentCSV(data)
+    const parsedData = parse(data)
     dispatch(makeAction(PRECOMMITMENTS_BULK_ADD, parsedData))
     try {
       const signTx = signedTransaction(
