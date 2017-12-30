@@ -36,7 +36,7 @@
   },
   "scripts": {
     "analyse": "source-map-explorer build/static/js/main.*",
-    "analyze": "source-map-explorer build/static/js/main.*",
+    "analyze": "npm run analyse",
     "precommit": "lint-staged",
     "prettier": "prettier --single-quote --no-semi --write 'src/**/*.{js,jsx,json,css}'",
     "lint": "eslint 'src/**/*.{js,jsx}'",
