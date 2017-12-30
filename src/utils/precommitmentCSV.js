@@ -4,13 +4,11 @@ const arrayToObject = ([beneficiary, tokensAllocated, halfVesting]) => ({
   halfVesting: halfVesting === 'YES'
 })
 
-export const parse = data => {
-  const lines = data.trim().split('\n')
-  return lines.map(line => {
-    const items = line.trim().split(',')
-    return arrayToObject(items)
-  })
-}
+export const parse = data =>
+  data
+    .trim()
+    .split('\n')
+    .map(line => arrayToObject(line.trim().split(',')))
 
 // incoming data is array of {beneficiary, tokensAllocated, halfVesting = true}
 const objectToArray = ({ beneficiary, tokensAllocated, halfVesting }) => [
