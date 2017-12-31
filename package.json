@@ -35,6 +35,8 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
+    "analyse": "source-map-explorer build/static/js/main.*",
+    "analyze": "npm run analyse",
     "precommit": "lint-staged",
     "prettier": "prettier --single-quote --no-semi --write 'src/**/*.{js,jsx,json,css}'",
     "lint": "eslint 'src/**/*.{js,jsx}'",
@@ -44,9 +46,9 @@
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
-    "analyze": "source-map-explorer build/static/js/main.*",
     "test": "npm run build-css && react-scripts test --env=jsdom",
     "test:coverage": "npm test -- --coverage",
+    "test:debug": "npm run build-css && react-scripts --inspect-brk test --runInBand --env=jsdom",
     "eject": "react-scripts eject"
   },
   "lint-staged": {

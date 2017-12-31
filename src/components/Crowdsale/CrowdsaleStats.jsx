@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import stringIfNotNull from '../../utils/stringIfNotNull'
 import { bigNumberShape } from '../../utils/shapes'
+import yesNoIfNotNull from '../../utils/yesNoIfNotNull'
 
 const CrowdsaleStats = ({
   tokensPurchased,
@@ -21,16 +22,24 @@ const CrowdsaleStats = ({
     <dt>Wallet Balance</dt>
     <dd>{stringIfNotNull(walletBalance)}</dd>
     <dt>Crowdsale Finalized</dt>
-    <dd>{isFinalized ? 'Yes' : 'No'}</dd>
+    <dd>{yesNoIfNotNull(isFinalized, 'Yes', 'No')}</dd>
   </dl>
 )
 
 CrowdsaleStats.propTypes = {
-  tokensPurchased: PropTypes.shape(bigNumberShape).isRequired,
-  foundationBalance: PropTypes.shape(bigNumberShape).isRequired,
-  foundersBalance: PropTypes.shape(bigNumberShape).isRequired,
-  walletBalance: PropTypes.shape(bigNumberShape).isRequired,
-  isFinalized: PropTypes.bool.isRequired
+  tokensPurchased: PropTypes.shape(bigNumberShape),
+  foundationBalance: PropTypes.shape(bigNumberShape),
+  foundersBalance: PropTypes.shape(bigNumberShape),
+  walletBalance: PropTypes.shape(bigNumberShape),
+  isFinalized: PropTypes.bool
+}
+
+CrowdsaleStats.defaultProps = {
+  tokensPurchased: null,
+  foundationBalance: null,
+  foundersBalance: null,
+  walletBalance: null,
+  isFinalized: null
 }
 
 export default CrowdsaleStats
