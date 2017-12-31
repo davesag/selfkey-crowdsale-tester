@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import dateFormat from '../../utils/dateFormat'
 
 const CrowdsaleDates = ({ startDate, endDate }) => {
-  const start = dateFormat(new Date(startDate))
-  const end = dateFormat(new Date(endDate))
+  const start = startDate ? dateFormat(new Date(startDate)) : null
+  const end = endDate ? dateFormat(new Date(endDate)) : null
 
   return (
     <dl className="dl-horizontal" id="crowdsale-dates">
@@ -18,8 +18,13 @@ const CrowdsaleDates = ({ startDate, endDate }) => {
 }
 
 CrowdsaleDates.propTypes = {
-  startDate: PropTypes.number.isRequired,
-  endDate: PropTypes.number.isRequired
+  startDate: PropTypes.number,
+  endDate: PropTypes.number
+}
+
+CrowdsaleDates.defaultProps = {
+  startDate: null,
+  endDate: null
 }
 
 export default CrowdsaleDates

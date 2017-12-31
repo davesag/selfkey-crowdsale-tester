@@ -3,13 +3,32 @@ import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 
+import { Button } from 'react-bootstrap'
+
 import { bigNumberShape } from '../../utils/shapes'
+
 import getCrowdsaleData from './getCrowdsaleData'
 
+const TEN_MINUTES = 1000 * 60 * 10
+
 class CrowdsaleData extends React.Component {
-  componentWillMount() {
+  refreshData = () => {
     const { doGetCrowdsaleData } = this.props
+    this.lastRefreshTime = new Date().getTime()
     doGetCrowdsaleData()
+    this.refreshInterval = setInterval(() => {
+      console.debug('checking again')
+      this.lastRefreshTime = new Date().getTime()
+      doGetCrowdsaleData()
+    }, TEN_MINUTES)
+  }
+
+  componentWillMount() {
+    this.refreshData()
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.refreshInterval)
   }
 
   render() {
@@ -24,12 +43,26 @@ class CrowdsaleData extends React.Component {
       foundersBalance,
       walletBalance
     } = this.props
-    if (loading) return <p>loading crowdsale data</p>
-    if (error) return <p>error: {error}</p>
-    if (startTime === null) return null
+
+    const button = () => (
+      <Button bsStyle="success" onClick={this.refreshData} disabled={loading}>
+        {loading ? 'Loading crowdsale data…' : 'Update Crowdsale Data'}
+      </Button>
+    )
 
     return (
       <section id="crowdsale-data">
+        {loading ? (
+          button()
+        ) : (
+          <div>
+            {button()}
+            <p className="text-info">
+              Cowdsale Data will reload every 10 Minutes
+            </p>
+          </div>
+        )}
+        {error && <p className="text-danger">Error: {error}</p>}
         {this.props.children({
           startTime,
           endTime,
