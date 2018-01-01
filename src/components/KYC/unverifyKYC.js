@@ -1,8 +1,7 @@
 import signedTransaction from '../../utils/signedTransaction'
-import makeAction from '../../utils/actionMaker'
 import blockchainAction from '../../utils/blockchainAction'
 
-import { KYC_UNVERIFY, KYC_UNVERIFY_FAIL } from './actions'
+import { KYC_UNVERIFY } from './actions'
 
 import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 
@@ -13,15 +12,9 @@ const handler = async ({
   dispatch,
   state: { owner: { address, isOwner }, contract: { SelfkeyCrowdsale } }
 }) => {
-  if (!addressToUnverify || addressToUnverify === '') {
-    dispatch(makeAction(KYC_UNVERIFY_FAIL, invalidAddress))
-    return null
-  }
-
-  if (!isOwner) {
-    dispatch(makeAction(KYC_UNVERIFY_FAIL, notCrowdsaleOwner))
-    return null
-  }
+  if (!addressToUnverify || addressToUnverify === '')
+    throw new Error(invalidAddress)
+  if (!isOwner) throw new Error(notCrowdsaleOwner)
 
   const signTx = signedTransaction(
     SelfkeyCrowdsale.abi,

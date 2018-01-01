@@ -1,8 +1,7 @@
 import contractAccess from '../../utils/contractAccess'
-import makeAction from '../../utils/actionMaker'
 import blockchainAction from '../../utils/blockchainAction'
 
-import { STATUS_CHECK, STATUS_CHECK_FAIL } from './actions'
+import { STATUS_CHECK } from './actions'
 
 import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 
@@ -13,13 +12,11 @@ const handler = async ({
   dispatch,
   state: { contract: { SelfkeyCrowdsale } }
 }) => {
-  if (!address || address === '') {
-    dispatch(makeAction(STATUS_CHECK_FAIL, invalidAddress))
-    return null
-  }
+  if (!address || address === '') throw new Error(invalidAddress)
 
   const crowdsale = contractAccess(CROWDSALE_ADDRESS, SelfkeyCrowdsale.abi)
   const result = await crowdsale.kycVerified(address)
+  console.debug('kycVerified', result)
   return result[0]
 }
 

@@ -4,6 +4,7 @@ const blockchainAction = (...params) => (action, handler) => async (
   dispatch,
   getState
 ) => {
+  console.debug('params', params)
   dispatch(makeAction(action, params))
   try {
     const result = await handler({
@@ -12,7 +13,7 @@ const blockchainAction = (...params) => (action, handler) => async (
       dispatch,
       state: getState()
     })
-    if (result !== null) dispatch(makeAction(`${action}_SUCCESS`, result))
+    dispatch(makeAction(`${action}_SUCCESS`, result))
   } catch (err) {
     console.error(action, err)
     if (err.tx) console.debug(err.tx)

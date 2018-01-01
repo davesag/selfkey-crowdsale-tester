@@ -1,9 +1,8 @@
 import signedTransaction from '../../utils/signedTransaction'
-import makeAction from '../../utils/actionMaker'
 import BigNumber from 'bignumber.js'
 import blockchainAction from '../../utils/blockchainAction'
 
-import { PRECOMMITMENT_ADD, PRECOMMITMENT_ADD_FAIL } from './actions'
+import { PRECOMMITMENT_ADD } from './actions'
 
 import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 const {
@@ -19,20 +18,9 @@ const handler = async ({
 }) => {
   const [beneficiary, tokensAllocated] = params
 
-  if (!isOwner) {
-    dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, notCrowdsaleOwner))
-    return null
-  }
-
-  if (!beneficiary || beneficiary === '') {
-    dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, invalidAddress))
-    return null
-  }
-
-  if (tokensAllocated.lt(0)) {
-    dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, amountMustBeGreaterThanZero))
-    return null
-  }
+  if (!isOwner) throw new Error(notCrowdsaleOwner)
+  if (!beneficiary || beneficiary === '') throw new Error(invalidAddress)
+  if (tokensAllocated.lte(0)) throw new Error(amountMustBeGreaterThanZero)
 
   const signTx = signedTransaction(
     SelfkeyCrowdsale.abi,

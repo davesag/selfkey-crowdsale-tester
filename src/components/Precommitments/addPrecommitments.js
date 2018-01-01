@@ -7,7 +7,6 @@ import blockchainAction from '../../utils/blockchainAction'
 
 import {
   PRECOMMITMENTS_BULK_ADD,
-  PRECOMMITMENTS_BULK_ADD_FAIL,
   PRECOMMITMENT_SINGLE_ADD,
   PRECOMMITMENT_SINGLE_ADD_FAIL,
   PRECOMMITMENT_SINGLE_ADD_SUCCESS
@@ -21,15 +20,8 @@ const handler = async ({
   dispatch,
   state: { owner: { address, isOwner }, contract: { SelfkeyCrowdsale } }
 }) => {
-  if (!isOwner) {
-    dispatch(makeAction(PRECOMMITMENTS_BULK_ADD_FAIL, notCrowdsaleOwner))
-    return null
-  }
-
-  if (!data || data === '') {
-    dispatch(makeAction(PRECOMMITMENTS_BULK_ADD_FAIL, invalidData))
-    return null
-  }
+  if (!isOwner) throw new Error(notCrowdsaleOwner)
+  if (!data || data === '') throw new Error(invalidData)
 
   const signTx = signedTransaction(
     SelfkeyCrowdsale.abi,

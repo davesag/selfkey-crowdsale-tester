@@ -18,16 +18,18 @@ const reducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action
   switch (type) {
     case KYC_VERIFY: {
+      const [address] = payload
       return {
         ...INITIAL_STATE,
-        address: payload,
+        address,
         verifying: true
       }
     }
     case KYC_UNVERIFY: {
+      const [address] = payload
       return {
         ...INITIAL_STATE,
-        address: payload,
+        address,
         unverifying: true
       }
     }

@@ -1,22 +1,18 @@
 import signedTransaction from '../../utils/signedTransaction'
-import makeAction from '../../utils/actionMaker'
 import blockchainAction from '../../utils/blockchainAction'
 
-import { CROWDSALE_FINALIZE, CROWDSALE_FINALIZE_FAIL } from './actions'
+import { CROWDSALE_FINALIZE } from './actions'
 
 import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 
 const { notCrowdsaleOwner } = ERRORS
 
 const handler = async ({
-  params: [address],
   dispatch,
-  state: { owner: { isOwner }, contract: { SelfkeyCrowdsale } }
+  state: { owner: { address, isOwner }, contract: { SelfkeyCrowdsale } }
 }) => {
-  if (!isOwner) {
-    dispatch(makeAction(CROWDSALE_FINALIZE_FAIL, notCrowdsaleOwner))
-    return null
-  }
+  if (!isOwner) throw new Error(notCrowdsaleOwner)
+
   const signTx = signedTransaction(
     SelfkeyCrowdsale.abi,
     CROWDSALE_ADDRESS,
