@@ -50,6 +50,7 @@ const handler = async ({
         )
         console.debug('addPrecommitment tx', tx)
         dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD_SUCCESS, item))
+        return tx
       } catch (err) {
         dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD_FAIL, err.message))
         throw err
