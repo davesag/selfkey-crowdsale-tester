@@ -53,8 +53,10 @@ const addPrecommitment = (
   const tokensAllocated = BigNumber(rawTokensAllocated || '0')
   const halfVesting = halfVestingString === 'true'
 
-  const action = blockchainAction(beneficiary, tokensAllocated, halfVesting)
-  return action(PRECOMMITMENT_ADD, handler)
+  return blockchainAction(beneficiary, tokensAllocated, halfVesting)(
+    PRECOMMITMENT_ADD,
+    handler
+  )
 }
 
 export default addPrecommitment

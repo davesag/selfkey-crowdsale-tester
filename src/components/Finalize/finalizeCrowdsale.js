@@ -28,9 +28,6 @@ const handler = async ({
   return tx
 }
 
-const finalizeCrowdsale = () => {
-  const action = blockchainAction()
-  return action(CROWDSALE_FINALIZE, handler)
-}
+const finalizeCrowdsale = () => blockchainAction()(CROWDSALE_FINALIZE, handler)
 
 export default finalizeCrowdsale

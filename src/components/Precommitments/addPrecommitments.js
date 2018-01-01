@@ -58,13 +58,7 @@ const handler = async ({
   )
 }
 
-const addPrecommitments = data => {
-  console.debug('data', data)
-  const parsedData = parse(data)
-  console.debug('parsedData', parsedData)
-
-  const action = blockchainAction(parsedData)
-  return action(PRECOMMITMENTS_BULK_ADD, handler)
-}
+const addPrecommitments = data =>
+  blockchainAction(parse(data))(PRECOMMITMENTS_BULK_ADD, handler)
 
 export default addPrecommitments

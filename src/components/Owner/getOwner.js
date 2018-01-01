@@ -16,9 +16,6 @@ const handler = async ({
   return result[0]
 }
 
-const getOwner = () => {
-  const action = blockchainAction()
-  return action(OWNER_LOAD, handler)
-}
+const getOwner = () => blockchainAction()(OWNER_LOAD, handler)
 
 export default getOwner

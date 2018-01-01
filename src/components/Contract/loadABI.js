@@ -1,18 +1,18 @@
-import { ABI_LOAD, ABI_LOAD_FAIL, ABI_LOAD_SUCCESS } from './actions'
+import { ABI_LOAD } from './actions'
+import blockchainAction from '../../utils/blockchainAction'
 
 import fetchOptions from '../../utils/fetchOptions'
-import makeAction from '../../utils/actionMaker'
 
-const loadABI = contract => async dispatch => {
-  dispatch(makeAction(ABI_LOAD, contract))
-  try {
-    const result = await fetch(`/abis/${contract}.json`, fetchOptions)
-    const abi = await result.json()
-    dispatch(makeAction(ABI_LOAD_SUCCESS, { contract, abi }))
-  } catch (err) {
-    console.error(err)
-    dispatch(makeAction(ABI_LOAD_FAIL, { contract, error: err.message }))
-  }
+const handler = async ({
+  params: [contract],
+  dispatch,
+  state: { owner: { address, isOwner }, contract: { SelfkeyCrowdsale } }
+}) => {
+  const result = await fetch(`/abis/${contract}.json`, fetchOptions)
+  const abi = await result.json()
+  return abi ? { contract, abi } : null
 }
+
+const loadABI = contract => blockchainAction(contract)(ABI_LOAD, handler)
 
 export default loadABI

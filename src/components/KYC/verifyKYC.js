@@ -34,9 +34,7 @@ const handler = async ({
   return tx
 }
 
-const verifyKYC = addressToVerify => {
-  const action = blockchainAction(addressToVerify)
-  return action(KYC_VERIFY, handler)
-}
+const verifyKYC = addressToVerify =>
+  blockchainAction(addressToVerify)(KYC_VERIFY, handler)
 
 export default verifyKYC

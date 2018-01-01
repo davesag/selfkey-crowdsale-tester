@@ -23,9 +23,6 @@ const handler = async ({
   return result[0]
 }
 
-const checkStatus = address => {
-  const action = blockchainAction(address)
-  return action(STATUS_CHECK, handler)
-}
+const checkStatus = address => blockchainAction(address)(STATUS_CHECK, handler)
 
 export default checkStatus

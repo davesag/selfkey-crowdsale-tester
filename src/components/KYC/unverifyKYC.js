@@ -34,9 +34,7 @@ const handler = async ({
   return tx
 }
 
-const unverifyKYC = addressToUnverify => {
-  const action = blockchainAction(addressToUnverify)
-  return action(KYC_UNVERIFY, handler)
-}
+const unverifyKYC = addressToUnverify =>
+  blockchainAction(addressToUnverify)(KYC_UNVERIFY, handler)
 
 export default unverifyKYC
