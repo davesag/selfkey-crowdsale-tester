@@ -24,6 +24,10 @@ describe('precommitmentCSV', () => {
     it('parses the data correctly', () => {
       expect(parse(data)).toEqual(expected)
     })
+
+    it('parsing nothing returns null', () => {
+      expect(parse()).toEqual(null)
+    })
   })
 
   describe('#toString', () => {
@@ -32,6 +36,10 @@ describe('precommitmentCSV', () => {
 
     it('parses the data correctly', () => {
       expect(toString(data)).toEqual(expected)
+    })
+
+    it('parsing nothing returns null', () => {
+      expect(toString()).toEqual(null)
     })
   })
 })

@@ -1,12 +1,9 @@
 import signedTransaction from '../../utils/signedTransaction'
 import makeAction from '../../utils/actionMaker'
 import BigNumber from 'bignumber.js'
+import blockchainAction from '../../utils/blockchainAction'
 
-import {
-  PRECOMMITMENT_ADD,
-  PRECOMMITMENT_ADD_FAIL,
-  PRECOMMITMENT_ADD_SUCCESS
-} from './actions'
+import { PRECOMMITMENT_ADD, PRECOMMITMENT_ADD_FAIL } from './actions'
 
 import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 const {
@@ -15,53 +12,49 @@ const {
   amountMustBeGreaterThanZero
 } = ERRORS
 
+const handler = async ({
+  params,
+  dispatch,
+  state: { owner: { address, isOwner }, contract: { SelfkeyCrowdsale } }
+}) => {
+  const [beneficiary, tokensAllocated] = params
+
+  if (!isOwner) {
+    dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, notCrowdsaleOwner))
+    return null
+  }
+
+  if (!beneficiary || beneficiary === '') {
+    dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, invalidAddress))
+    return null
+  }
+
+  if (tokensAllocated.lt(0)) {
+    dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, amountMustBeGreaterThanZero))
+    return null
+  }
+
+  const signTx = signedTransaction(
+    SelfkeyCrowdsale.abi,
+    CROWDSALE_ADDRESS,
+    address
+  )
+
+  const tx = await signTx('addPrecommitment', ...params)
+  console.debug('addPrecommitment tx', tx)
+  return tx
+}
+
 const addPrecommitment = (
   beneficiary,
   rawTokensAllocated,
   halfVestingString
-) => async (dispatch, getState) => {
-  const {
-    owner: { address, isOwner },
-    contract: { SelfkeyCrowdsale }
-  } = getState()
-
+) => {
   const tokensAllocated = BigNumber(rawTokensAllocated || '0')
   const halfVesting = halfVestingString === 'true'
 
-  if (!isOwner) {
-    dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, notCrowdsaleOwner))
-  } else if (!beneficiary || beneficiary === '') {
-    dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, invalidAddress))
-  } else if (tokensAllocated.lt(0)) {
-    dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, amountMustBeGreaterThanZero))
-  } else {
-    dispatch(
-      makeAction(PRECOMMITMENT_ADD, {
-        beneficiary,
-        tokensAllocated,
-        halfVesting
-      })
-    )
-    try {
-      const signTx = signedTransaction(
-        SelfkeyCrowdsale.abi,
-        CROWDSALE_ADDRESS,
-        address
-      )
-      const tx = await signTx(
-        'addPrecommitment',
-        beneficiary,
-        tokensAllocated,
-        halfVesting
-      )
-      console.debug('addPrecommitment tx', tx)
-      dispatch(makeAction(PRECOMMITMENT_ADD_SUCCESS))
-    } catch (err) {
-      console.error(err)
-      if (err.tx) console.error(err.tx)
-      dispatch(makeAction(PRECOMMITMENT_ADD_FAIL, err.message))
-    }
-  }
+  const action = blockchainAction(beneficiary, tokensAllocated, halfVesting)
+  return action(PRECOMMITMENT_ADD, handler)
 }
 
 export default addPrecommitment

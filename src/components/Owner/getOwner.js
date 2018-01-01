@@ -1,23 +1,24 @@
-import makeAction from '../../utils/actionMaker'
 import contractAccess from '../../utils/contractAccess'
+import blockchainAction from '../../utils/blockchainAction'
 
-import { OWNER_LOAD, OWNER_LOAD_SUCCESS, OWNER_LOAD_FAIL } from './actions'
+import { OWNER_LOAD } from './actions'
 
 import { CROWDSALE_ADDRESS } from '../../constants'
 
-const getOwner = () => async (dispatch, getState) => {
-  const { owner, contract: { SelfkeyCrowdsale } } = getState()
-  if (!owner.owner) {
-    dispatch(makeAction(OWNER_LOAD))
-    try {
-      const crowdsale = contractAccess(CROWDSALE_ADDRESS, SelfkeyCrowdsale.abi)
-      const result = await crowdsale.owner()
-      dispatch(makeAction(OWNER_LOAD_SUCCESS, result[0]))
-    } catch (err) {
-      console.error(err)
-      dispatch(makeAction(OWNER_LOAD_FAIL, err.message))
-    }
-  }
+const handler = async ({
+  dispatch,
+  state: { owner: { owner, isOwner }, contract: { SelfkeyCrowdsale } }
+}) => {
+  if (owner) return owner
+
+  const crowdsale = contractAccess(CROWDSALE_ADDRESS, SelfkeyCrowdsale.abi)
+  const result = await crowdsale.owner()
+  return result[0]
+}
+
+const getOwner = () => {
+  const action = blockchainAction()
+  return action(OWNER_LOAD, handler)
 }
 
 export default getOwner
