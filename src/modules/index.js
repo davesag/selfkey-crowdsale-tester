@@ -10,6 +10,7 @@ import owner from '../components/Owner/reducer'
 import precommitment from '../components/Precommitment/reducer'
 import precommitments from '../components/Precommitments/reducer'
 import finalize from '../components/Finalize/reducer'
+import mining from '../components/Mining/reducer'
 
 export default combineReducers({
   routing,
@@ -21,5 +22,6 @@ export default combineReducers({
   owner,
   precommitment,
   precommitments,
-  finalize
+  finalize,
+  mining
 })

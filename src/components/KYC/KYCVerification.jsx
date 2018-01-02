@@ -12,6 +12,7 @@ import unverifyKYC from './unverifyKYC'
 const KYCVerification = ({
   doVerifyKYC,
   doUnverifyKYC,
+  isMining,
   verifying,
   unverifying,
   verifyButtonLabel,
@@ -28,14 +29,14 @@ const KYCVerification = ({
           name="address"
           placeholder={ZERO_ADDRESS}
           defaultValue={address}
-          disabled={unverifying || verifying}
+          disabled={unverifying || verifying || isMining}
         />
       </Col>
       <Col xs={3}>
         <Button
           bsStyle="success"
           onClick={doVerifyKYC}
-          disabled={unverifying || verifying}
+          disabled={unverifying || verifying || isMining}
         >
           {verifyButtonLabel}
         </Button>
@@ -46,7 +47,7 @@ const KYCVerification = ({
         <Button
           bsStyle="danger"
           onClick={doUnverifyKYC}
-          disabled={unverifying || verifying}
+          disabled={unverifying || verifying || isMining}
         >
           {unverifyButtonLabel}
         </Button>
@@ -61,6 +62,7 @@ KYCVerification.propTypes = {
   doUnverifyKYC: PropTypes.func.isRequired,
   verifying: PropTypes.bool,
   unverifying: PropTypes.bool,
+  isMining: PropTypes.bool,
   verifyButtonLabel: PropTypes.string,
   unverifyButtonLabel: PropTypes.string,
   error: PropTypes.string,
@@ -70,14 +72,16 @@ KYCVerification.propTypes = {
 KYCVerification.defaultPropTypes = {
   verifying: false,
   unverifying: false,
+  isMining: false,
   verifyButtonLabel: 'Approve KYC',
   unverifyButtonLabel: 'Reject KYC',
   error: null,
   address: null
 }
 
-const mapStateToProps = ({ kyc }) => ({
+const mapStateToProps = ({ kyc, mining: { isMining } }) => ({
   ...kyc,
+  isMining,
   verifyButtonLabel: kyc.verifying
     ? 'Approving KYC'
     : KYCVerification.defaultPropTypes.verifyButtonLabel,

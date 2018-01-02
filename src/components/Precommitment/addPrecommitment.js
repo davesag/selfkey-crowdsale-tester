@@ -1,6 +1,6 @@
 import signedTransaction from '../../utils/signedTransaction'
 import BigNumber from 'bignumber.js'
-import blockchainAction from '../../utils/blockchainAction'
+import blockchainMiningAction from '../../utils/blockchainMiningAction'
 
 import { PRECOMMITMENT_ADD } from './actions'
 
@@ -41,7 +41,7 @@ const addPrecommitment = (
   const tokensAllocated = BigNumber(rawTokensAllocated || '0')
   const halfVesting = halfVestingString === 'true'
 
-  return blockchainAction(beneficiary, tokensAllocated, halfVesting)(
+  return blockchainMiningAction(beneficiary, tokensAllocated, halfVesting)(
     PRECOMMITMENT_ADD,
     handler
   )

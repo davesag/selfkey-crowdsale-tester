@@ -13,6 +13,7 @@ import addPrecommitment from './addPrecommitment'
 const AddPrecommitment = ({
   doAddPrecommitment,
   adding,
+  isMining,
   buttonLabel,
   error,
   beneficiary,
@@ -29,7 +30,7 @@ const AddPrecommitment = ({
           name="beneficiary"
           placeholder={ZERO_ADDRESS}
           defaultValue={beneficiary}
-          disabled={adding}
+          disabled={adding || isMining}
         />
       </Col>
       <Col xs={2}>
@@ -38,7 +39,7 @@ const AddPrecommitment = ({
           className="form-control"
           name="tokensAllocated"
           defaultValue={tokensAllocated}
-          disabled={adding}
+          disabled={adding || isMining}
         />
       </Col>
       <Col xs={2}>
@@ -47,7 +48,7 @@ const AddPrecommitment = ({
           className="form-control"
           name="halfVesting"
           defaultValue={halfVesting}
-          disabled={adding}
+          disabled={adding || isMining}
         >
           <option key="choose" value="">
             Choose…
@@ -66,7 +67,7 @@ const AddPrecommitment = ({
         <Button
           bsStyle="success"
           onClick={doAddPrecommitment}
-          disabled={adding}
+          disabled={adding || isMining}
         >
           {buttonLabel}
         </Button>
@@ -78,6 +79,7 @@ const AddPrecommitment = ({
 
 AddPrecommitment.propTypes = {
   doAddPrecommitment: PropTypes.func.isRequired,
+  isMining: PropTypes.bool,
   adding: PropTypes.bool,
   buttonLabel: PropTypes.string,
   error: PropTypes.string,
@@ -88,6 +90,7 @@ AddPrecommitment.propTypes = {
 
 AddPrecommitment.defaultPropTypes = {
   adding: false,
+  isMining: false,
   buttonLabel: 'Add Precommitment',
   error: null,
   beneficiary: null,
@@ -96,9 +99,11 @@ AddPrecommitment.defaultPropTypes = {
 }
 
 const mapStateToProps = ({
-  precommitment: { tokensAllocated, halfVesting, ...precommitment }
+  precommitment: { tokensAllocated, halfVesting, ...precommitment },
+  mining: { isMining }
 }) => ({
   ...precommitment,
+  isMining,
   halfVesting: stringIfNotNull(halfVesting),
   tokensAllocated: stringIfNotNull(tokensAllocated),
   buttonLabel: precommitment.adding

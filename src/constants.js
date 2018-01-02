@@ -19,5 +19,6 @@ export const ERRORS = {
   invalidData: 'Invalid data',
   notCrowdsaleOwner: 'You are not the owner of the Crowdsale Contract',
   amountMustBeGreaterThanZero: 'Amount must be greater than zero',
-  missingContract: 'You must provide a Contract'
+  missingContract: 'You must provide a Contract',
+  stillMining: 'The last transaction is still being mined'
 }

@@ -1,5 +1,5 @@
 import signedTransaction from '../../utils/signedTransaction'
-import blockchainAction from '../../utils/blockchainAction'
+import blockchainMiningAction from '../../utils/blockchainMiningAction'
 
 import { KYC_VERIFY } from './actions'
 
@@ -28,6 +28,6 @@ const handler = async ({
 }
 
 const verifyKYC = addressToVerify =>
-  blockchainAction(addressToVerify)(KYC_VERIFY, handler)
+  blockchainMiningAction(addressToVerify)(KYC_VERIFY, handler)
 
 export default verifyKYC
