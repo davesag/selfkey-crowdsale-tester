@@ -15,3 +15,7 @@ export const bigNumberShape = {
   e: number.isRequired,
   c: arrayOf(number).isRequired
 }
+
+export const blockShape = {
+  hash: string.isRequired
+}

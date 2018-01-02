@@ -1,5 +1,5 @@
 import signedTransaction from '../../utils/signedTransaction'
-import blockchainAction from '../../utils/blockchainAction'
+import blockchainMiningAction from '../../utils/blockchainMiningAction'
 
 import { CROWDSALE_FINALIZE } from './actions'
 
@@ -24,6 +24,7 @@ const handler = async ({
   return tx
 }
 
-const finalizeCrowdsale = () => blockchainAction()(CROWDSALE_FINALIZE, handler)
+const finalizeCrowdsale = () =>
+  blockchainMiningAction()(CROWDSALE_FINALIZE, handler)
 
 export default finalizeCrowdsale

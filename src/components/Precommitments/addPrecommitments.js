@@ -1,9 +1,18 @@
+import Eth from 'ethjs-query'
+import HttpProvider from 'ethjs-provider-http'
 import BigNumber from 'bignumber.js'
 
 import signedTransaction from '../../utils/signedTransaction'
 import makeAction from '../../utils/actionMaker'
 import { parse } from '../../utils/precommitmentCSV'
 import blockchainAction from '../../utils/blockchainAction'
+import mining from '../../utils/mining'
+import txSucceeded from '../../utils/txSucceeded'
+import TxError from '../../utils/TxError'
+
+import { ETH_PROVIDER_URL, CROWDSALE_ADDRESS, ERRORS } from '../../constants'
+import { MINING_STOP } from '../Mining/actions'
+import getMiningData from '../Mining/getMiningData'
 
 import {
   PRECOMMITMENTS_BULK_ADD,
@@ -12,8 +21,8 @@ import {
   PRECOMMITMENT_SINGLE_ADD_SUCCESS
 } from './actions'
 
-import { CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 const { invalidData, notCrowdsaleOwner } = ERRORS
+const eth = new Eth(new HttpProvider(ETH_PROVIDER_URL))
 
 const handler = async ({
   params: [data],
@@ -40,7 +49,15 @@ const handler = async ({
           BigNumber(tokensAllocated),
           halfVesting
         )
+        dispatch(getMiningData(tx))
         console.debug('addPrecommitment tx', tx)
+        const result = await mining(tx)
+        console.debug('mining result', result)
+        dispatch(makeAction(MINING_STOP, result))
+        const receipt = await eth.getTransactionReceipt(tx)
+        if (!txSucceeded(receipt))
+          throw new TxError(`Transaction failed.`, receipt)
+
         dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD_SUCCESS, item))
         return tx
       } catch (err) {
