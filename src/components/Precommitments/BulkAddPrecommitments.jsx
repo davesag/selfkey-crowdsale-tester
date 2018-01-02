@@ -9,6 +9,7 @@ import { toString } from '../../utils/precommitmentCSV'
 
 const BulkAddPrecommitments = ({
   doAddPrecommitments,
+  isMining,
   adding,
   buttonLabel,
   error,
@@ -25,7 +26,7 @@ const BulkAddPrecommitments = ({
           className="form-control"
           name="data"
           defaultValue={data}
-          disabled={adding}
+          disabled={adding || isMining}
         />
       </Col>
       <Col xs={3}>
@@ -33,7 +34,7 @@ const BulkAddPrecommitments = ({
         <Button
           bsStyle="success"
           onClick={doAddPrecommitments}
-          disabled={adding}
+          disabled={adding || isMining}
         >
           {buttonLabel}
         </Button>
@@ -45,6 +46,7 @@ const BulkAddPrecommitments = ({
 
 BulkAddPrecommitments.propTypes = {
   doAddPrecommitments: PropTypes.func.isRequired,
+  isMining: PropTypes.bool,
   adding: PropTypes.bool,
   buttonLabel: PropTypes.string,
   error: PropTypes.string,
@@ -52,14 +54,19 @@ BulkAddPrecommitments.propTypes = {
 }
 
 BulkAddPrecommitments.defaultPropTypes = {
+  isMining: false,
   adding: false,
   buttonLabel: 'Bulk Add Precommitments',
   error: null,
   data: null
 }
 
-const mapStateToProps = ({ precommitments: { data, ...precommitments } }) => ({
+const mapStateToProps = ({
+  precommitments: { data, ...precommitments },
+  mining: { isMining }
+}) => ({
   ...precommitments,
+  isMining,
   data: toString(data),
   buttonLabel: precommitments.adding
     ? 'Adding Precommitments'
