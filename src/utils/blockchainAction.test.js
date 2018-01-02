@@ -1,5 +1,4 @@
 import blockchainAction from './blockchainAction'
-import TxError from './TxError'
 
 const testAction = 'TEST_ACTION'
 const testParam = 'test param'
