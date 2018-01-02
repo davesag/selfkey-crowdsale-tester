@@ -18,5 +18,6 @@ export const ERRORS = {
   invalidAddress: 'Invalid Address',
   invalidData: 'Invalid data',
   notCrowdsaleOwner: 'You are not the owner of the Crowdsale Contract',
-  amountMustBeGreaterThanZero: 'Amount must be greater than zero'
+  amountMustBeGreaterThanZero: 'Amount must be greater than zero',
+  missingContract: 'You must provide a Contract'
 }

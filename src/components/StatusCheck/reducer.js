@@ -15,9 +15,10 @@ const reducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action
   switch (type) {
     case STATUS_CHECK: {
+      const [address] = payload
       return {
         ...INITIAL_STATE,
-        address: payload,
+        address,
         checkingStatus: true
       }
     }

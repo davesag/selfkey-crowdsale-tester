@@ -6,9 +6,11 @@ const arrayToObject = ([beneficiary, tokensAllocated, halfVesting]) => ({
 
 export const parse = data =>
   data
-    .trim()
-    .split('\n')
-    .map(line => arrayToObject(line.trim().split(',')))
+    ? data
+        .trim()
+        .split('\n')
+        .map(line => arrayToObject(line.trim().split(',')))
+    : null
 
 const objectToArray = ({ beneficiary, tokensAllocated, halfVesting }) => [
   beneficiary,
@@ -17,4 +19,6 @@ const objectToArray = ({ beneficiary, tokensAllocated, halfVesting }) => [
 ]
 
 export const toString = data =>
-  data ? data.map(d => objectToArray(d).join(',')).join('\n') : null
+  data
+    ? data.map(d => (d ? objectToArray(d).join(',') : undefined)).join('\n')
+    : null

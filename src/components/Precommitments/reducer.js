@@ -18,9 +18,10 @@ const reducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action
   switch (type) {
     case PRECOMMITMENTS_BULK_ADD: {
+      const [data] = payload
       return {
         ...INITIAL_STATE,
-        data: payload,
+        data,
         adding: true
       }
     }
