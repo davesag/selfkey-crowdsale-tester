@@ -4,7 +4,6 @@ const blockchainAction = (...params) => (action, handler) => async (
   dispatch,
   getState
 ) => {
-  console.debug('params', params)
   dispatch(makeAction(action, params))
   try {
     const result = await handler({

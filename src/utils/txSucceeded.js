@@ -1,5 +1,6 @@
 import isZero from './isZero'
 
-const txSucceeded = result => result && !isZero(result.status)
+const txSucceeded = result =>
+  !!result && !!result.status && !isZero(result.status)
 
 export default txSucceeded
