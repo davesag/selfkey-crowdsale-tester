@@ -15,13 +15,12 @@ const Footer = () => (
       </Col>
       <Col xs={9}>
         <MiningData>
-          {({ loading, isMining, block, error, doGetMiningData }) => (
+          {({ loading, isMining, block, error }) => (
             <Mining
               loading={loading}
               isMining={isMining}
               block={block}
               error={error}
-              doGetMiningData={doGetMiningData}
             />
           )}
         </MiningData>
