@@ -6,7 +6,7 @@ const INITIAL_CONTRACT_STATE = {
   abi: null
 }
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   /*
     [contractName]
       - loading

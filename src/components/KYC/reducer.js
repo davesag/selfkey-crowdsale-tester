@@ -7,7 +7,7 @@ import {
   KYC_UNVERIFY_FAIL
 } from './actions'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   verifying: false,
   unverifying: false,
   error: null,

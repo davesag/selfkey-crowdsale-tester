@@ -4,7 +4,7 @@ import {
   CROWDSALE_FINALIZE_FAIL
 } from './actions'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   finalizing: false,
   error: null
 }

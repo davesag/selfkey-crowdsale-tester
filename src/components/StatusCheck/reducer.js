@@ -4,7 +4,7 @@ import {
   STATUS_CHECK_FAIL
 } from './actions'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   checkingStatus: false,
   status: null,
   error: null,

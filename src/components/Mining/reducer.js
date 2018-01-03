@@ -6,7 +6,7 @@ import {
   MINING_STOP
 } from './actions'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   isMining: false,
   loading: false,
   tx: null,

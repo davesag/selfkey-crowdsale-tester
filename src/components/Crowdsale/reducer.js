@@ -4,7 +4,7 @@ import {
   CROWDSALE_DATA_GET_FAIL
 } from './actions'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   loading: false,
   error: null,
   startTime: null,
