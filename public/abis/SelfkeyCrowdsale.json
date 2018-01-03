@@ -262,6 +262,20 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "PURCHASER_MAX_TOKEN_CAP_DAY1",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "TOKEN_DECIMALS",
     "outputs": [
       {
