@@ -36,12 +36,14 @@ const reducer = (state = INITIAL_STATE, action) => {
     case KYC_VERIFY_SUCCESS: {
       return {
         ...state,
+        error: null,
         verifying: false
       }
     }
     case KYC_UNVERIFY_SUCCESS: {
       return {
         ...state,
+        error: null,
         unverifying: false
       }
     }

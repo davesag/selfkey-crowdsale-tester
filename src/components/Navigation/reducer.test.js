@@ -23,3 +23,34 @@ describe('unknown action', () => {
     })
   })
 })
+
+describe('TITLE_SET', () => {
+  const payload = 'this is the title'
+  const action = makeAction(TITLE_SET, payload)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      title: payload
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      title: 'some other title'
+    }
+    const expected = {
+      ...state,
+      title: payload
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})

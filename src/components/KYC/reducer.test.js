@@ -30,3 +30,201 @@ describe('unknown action', () => {
     })
   })
 })
+
+describe('KYC_VERIFY', () => {
+  const address = '0x0'
+  const payload = [address]
+  const action = makeAction(KYC_VERIFY, payload)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      address,
+      verifying: true
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      address,
+      error: 'oops'
+    }
+    const expected = {
+      ...state,
+      error: null,
+      verifying: true
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})
+
+describe('KYC_VERIFY_SUCCESS', () => {
+  const action = makeAction(KYC_VERIFY_SUCCESS)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      verifying: false
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      error: 'oops'
+    }
+    const expected = {
+      ...state,
+      error: null,
+      verifying: false
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})
+
+describe('KYC_VERIFY_FAIL', () => {
+  const error = 'oops'
+  const action = makeAction(KYC_VERIFY_FAIL, error)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      verifying: false,
+      error
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      verifying: true
+    }
+    const expected = {
+      ...state,
+      error,
+      verifying: false
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})
+
+describe('KYC_UNVERIFY', () => {
+  const address = '0x0'
+  const payload = [address]
+  const action = makeAction(KYC_UNVERIFY, payload)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      address,
+      unverifying: true
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      address,
+      error: 'oops'
+    }
+    const expected = {
+      ...state,
+      error: null,
+      unverifying: true
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})
+
+describe('KYC_UNVERIFY_SUCCESS', () => {
+  const action = makeAction(KYC_UNVERIFY_SUCCESS)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      unverifying: false
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      error: 'oops'
+    }
+    const expected = {
+      ...state,
+      error: null,
+      unverifying: false
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})
+
+describe('KYC_UNVERIFY_FAIL', () => {
+  const error = 'oops'
+  const action = makeAction(KYC_UNVERIFY_FAIL, error)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      unverifying: false,
+      error
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      unverifying: true
+    }
+    const expected = {
+      ...state,
+      error,
+      unverifying: false
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})

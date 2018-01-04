@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import reducer, { INITIAL_STATE } from './reducer'
 import makeAction from '../../utils/actionMaker'
 
@@ -26,6 +27,108 @@ describe('unknown action', () => {
 
     it('returns the previous state', () => {
       expect(reducer(state, action)).toEqual(state)
+    })
+  })
+})
+
+describe('MINING_DATA_GET', () => {
+  const tx = '0x0'
+  const payload = [tx]
+  const action = makeAction(MINING_DATA_GET, payload)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      tx,
+      loading: true
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      tx,
+      error: 'oops'
+    }
+    const expected = {
+      ...state,
+      error: null,
+      loading: true
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})
+
+describe('MINING_START', () => {
+  const tx = '0x0'
+  const payload = [tx]
+  const action = makeAction(MINING_START, payload)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      tx,
+      isMining: true
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      tx,
+      error: 'oops'
+    }
+    const expected = {
+      ...state,
+      isMining: true
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})
+
+describe('MINING_STOP', () => {
+  const payload = { hash: 'xxx' }
+  const action = makeAction(MINING_STOP, payload)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      isMining: false,
+      block: payload
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      error: 'oops'
+    }
+    const expected = {
+      ...state,
+      isMining: false,
+      block: payload
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
     })
   })
 })

@@ -7,8 +7,10 @@ import {
 export const INITIAL_STATE = {
   loading: false,
   error: null,
+  isFinalized: null,
   startTime: null,
   endTime: null,
+  lockedTotal: null,
   tokensPurchased: null,
   foundationBalance: null,
   foundersBalance: null,
@@ -21,13 +23,15 @@ const reducer = (state = INITIAL_STATE, action) => {
     case CROWDSALE_DATA_GET: {
       return {
         ...state,
-        loading: true
+        loading: true,
+        error: null
       }
     }
     case CROWDSALE_DATA_GET_SUCCESS: {
       return {
         ...state,
         loading: false,
+        error: null,
         ...payload
       }
     }

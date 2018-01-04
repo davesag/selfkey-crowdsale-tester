@@ -27,3 +27,97 @@ describe('unknown action', () => {
     })
   })
 })
+
+describe('CROWDSALE_FINALIZE', () => {
+  const action = makeAction(CROWDSALE_FINALIZE)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      finalizing: true
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      error: 'oops'
+    }
+    const expected = {
+      ...state,
+      error: null,
+      finalizing: true
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})
+
+describe('CROWDSALE_FINALIZE_SUCCESS', () => {
+  const action = makeAction(CROWDSALE_FINALIZE_SUCCESS)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      finalizing: false
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      error: 'oops'
+    }
+    const expected = {
+      ...state,
+      error: null,
+      finalizing: false
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})
+
+describe('CROWDSALE_FINALIZE_FAIL', () => {
+  const error = 'oops'
+  const action = makeAction(CROWDSALE_FINALIZE_FAIL, error)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      error
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      finalizing: true
+    }
+    const expected = {
+      ...state,
+      finalizing: false,
+      error
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})

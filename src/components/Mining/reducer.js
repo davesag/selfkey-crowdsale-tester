@@ -39,14 +39,16 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         tx,
-        loading: true
+        loading: true,
+        error: null
       }
     }
     case MINING_DATA_GET_SUCCESS: {
       return {
         ...state,
         ...payload,
-        loading: false
+        loading: false,
+        error: null
       }
     }
     case MINING_DATA_GET_FAIL: {

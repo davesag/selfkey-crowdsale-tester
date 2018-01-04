@@ -35,13 +35,9 @@ class CrowdsaleData extends React.Component {
     const {
       loading,
       error,
-      startTime,
-      endTime,
-      tokensPurchased,
-      isFinalized,
-      foundationBalance,
-      foundersBalance,
-      walletBalance
+      children,
+      doGetCrowdsaleData,
+      ...props
     } = this.props
 
     const button = () => (
@@ -63,15 +59,7 @@ class CrowdsaleData extends React.Component {
           </div>
         )}
         {error && <p className="text-danger">Error: {error}</p>}
-        {this.props.children({
-          startTime,
-          endTime,
-          tokensPurchased,
-          isFinalized,
-          foundationBalance,
-          foundersBalance,
-          walletBalance
-        })}
+        {children(props)}
       </section>
     )
   }
@@ -82,10 +70,10 @@ CrowdsaleData.propTypes = {
   doGetCrowdsaleData: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   error: PropTypes.string,
+  isFinalized: PropTypes.bool,
   startTime: PropTypes.number,
   endTime: PropTypes.number,
   tokensPurchased: PropTypes.shape(bigNumberShape),
-  isFinalized: PropTypes.bool,
   foundationBalance: PropTypes.shape(bigNumberShape),
   foundersBalance: PropTypes.shape(bigNumberShape),
   walletBalance: PropTypes.shape(bigNumberShape)
@@ -94,10 +82,10 @@ CrowdsaleData.propTypes = {
 CrowdsaleData.defaultPropTypes = {
   loading: false,
   error: null,
+  isFinalized: null,
   startTime: null,
   endTime: null,
   tokensPurchased: null,
-  isFinalized: null,
   foundationBalance: null,
   foundersBalance: null,
   walletBalance: null

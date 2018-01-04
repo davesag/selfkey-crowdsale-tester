@@ -21,7 +21,8 @@ const reducer = (state = INITIAL_STATE, action) => {
     case CROWDSALE_FINALIZE_SUCCESS: {
       return {
         ...state,
-        finalizing: false
+        finalizing: false,
+        error: null
       }
     }
     case CROWDSALE_FINALIZE_FAIL: {

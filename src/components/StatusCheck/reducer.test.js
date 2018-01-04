@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import reducer, { INITIAL_STATE } from './reducer'
 import makeAction from '../../utils/actionMaker'
 
