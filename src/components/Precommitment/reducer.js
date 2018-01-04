@@ -25,6 +25,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     case PRECOMMITMENT_ADD_SUCCESS: {
       return {
         ...state,
+        error: null,
         adding: false
       }
     }
