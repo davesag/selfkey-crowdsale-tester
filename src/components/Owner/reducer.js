@@ -18,18 +18,18 @@ const reducer = (state = INITIAL_STATE, action) => {
   const { type, payload, address } = action
   switch (type) {
     case ACCOUNT_RECEIVED: {
-      const isOwner = address && state.owner && address === state.owner
+      const isOwner = !!address && !!state.owner && address === state.owner
       return { ...state, address, isOwner }
     }
     case ACCOUNT_CHANGED: {
-      const isOwner = address && state.owner && address === state.owner
+      const isOwner = !!address && !!state.owner && address === state.owner
       return { ...state, address, isOwner }
     }
     case OWNER_LOAD: {
-      return { ...state, loading: true }
+      return { ...state, error: null, isOwner: false, loading: true }
     }
     case OWNER_LOAD_SUCCESS: {
-      const isOwner = payload && state.address && payload === state.address
+      const isOwner = !!payload && !!state.address && payload === state.address
       return {
         ...state,
         loading: false,
