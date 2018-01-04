@@ -1,6 +1,6 @@
 import { TITLE_SET } from './actions'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   lhs: {
     kyc: 'KYC',
     precommitments: 'Precommitments'

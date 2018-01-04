@@ -6,7 +6,7 @@ import {
   ACCOUNT_CHANGED // carries address in action.address not payload.
 } from './actions'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   isOwner: false,
   loading: false,
   error: null,

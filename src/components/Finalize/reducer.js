@@ -4,7 +4,7 @@ import {
   CROWDSALE_FINALIZE_FAIL
 } from './actions'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   finalizing: false,
   error: null
 }
@@ -21,7 +21,8 @@ const reducer = (state = INITIAL_STATE, action) => {
     case CROWDSALE_FINALIZE_SUCCESS: {
       return {
         ...state,
-        finalizing: false
+        finalizing: false,
+        error: null
       }
     }
     case CROWDSALE_FINALIZE_FAIL: {

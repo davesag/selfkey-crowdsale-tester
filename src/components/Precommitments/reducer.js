@@ -7,7 +7,7 @@ import {
   PRECOMMITMENT_SINGLE_ADD_SUCCESS
 } from './actions'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   adding: false,
   data: [],
   current: null,

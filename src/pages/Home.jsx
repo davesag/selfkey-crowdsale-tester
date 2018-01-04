@@ -17,25 +17,11 @@ const Home = () => (
   >
     {({ isOwner }) => (
       <CrowdsaleData>
-        {({
-          startTime,
-          endTime,
-          tokensPurchased,
-          isFinalized,
-          foundationBalance,
-          foundersBalance,
-          walletBalance
-        }) => (
+        {({ startTime, endTime, isFinalized, ...stats }) => (
           <section>
             <Owner isOwner={isOwner} />
             <CrowdsaleDates startDate={startTime} endDate={endTime} />
-            <CrowdsaleStats
-              tokensPurchased={tokensPurchased}
-              isFinalized={isFinalized}
-              foundationBalance={foundationBalance}
-              foundersBalance={foundersBalance}
-              walletBalance={walletBalance}
-            />
+            <CrowdsaleStats isFinalized={isFinalized} {...stats} />
             {showFinalizeButton(isOwner, isFinalized) && <FinalizeCrowdsale />}
           </section>
         )}

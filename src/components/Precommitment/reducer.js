@@ -4,7 +4,7 @@ import {
   PRECOMMITMENT_ADD_SUCCESS
 } from './actions'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   adding: false,
   beneficiary: null,
   tokensAllocated: null,

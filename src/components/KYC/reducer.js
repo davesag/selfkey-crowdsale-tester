@@ -7,7 +7,7 @@ import {
   KYC_UNVERIFY_FAIL
 } from './actions'
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   verifying: false,
   unverifying: false,
   error: null,
@@ -36,12 +36,14 @@ const reducer = (state = INITIAL_STATE, action) => {
     case KYC_VERIFY_SUCCESS: {
       return {
         ...state,
+        error: null,
         verifying: false
       }
     }
     case KYC_UNVERIFY_SUCCESS: {
       return {
         ...state,
+        error: null,
         unverifying: false
       }
     }
