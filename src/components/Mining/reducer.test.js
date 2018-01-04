@@ -1,4 +1,5 @@
 import reducer, { INITIAL_STATE } from './reducer'
+import makeAction from '../../utils/actionMaker'
 
 import {
   MINING_DATA_GET,
@@ -9,9 +10,11 @@ import {
 } from './actions'
 
 describe('unknown action', () => {
+  const action = makeAction('bollocks')
+
   describe('given no state', () => {
     it('returns the initial state', () => {
-      expect(reducer(undefined, { type: 'bollocks' })).toEqual(INITIAL_STATE)
+      expect(reducer(undefined, action)).toEqual(INITIAL_STATE)
     })
   })
 
@@ -22,7 +25,7 @@ describe('unknown action', () => {
     }
 
     it('returns the previous state', () => {
-      expect(reducer(state, { type: 'bollocks' })).toEqual(state)
+      expect(reducer(state, action)).toEqual(state)
     })
   })
 })
