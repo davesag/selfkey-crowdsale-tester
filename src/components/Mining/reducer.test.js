@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import reducer, { INITIAL_STATE } from './reducer'
 import makeAction from '../../utils/actionMaker'
 
@@ -58,6 +57,73 @@ describe('MINING_DATA_GET', () => {
       ...state,
       error: null,
       loading: true
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})
+
+describe('MINING_DATA_GET_SUCCESS', () => {
+  const payload = { tx: '0x0', block: { hash: '0x001' }, isMining: true }
+  const action = makeAction(MINING_DATA_GET_SUCCESS, payload)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      ...payload
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      tx: '0x12345',
+      error: 'oops'
+    }
+    const expected = {
+      ...state,
+      ...payload,
+      error: null
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(state, action)).toEqual(expected)
+    })
+  })
+})
+
+describe('MINING_DATA_GET_FAIL', () => {
+  const error = 'oops'
+  const action = makeAction(MINING_DATA_GET_FAIL, error)
+
+  describe('given no state', () => {
+    const expected = {
+      ...INITIAL_STATE,
+      error
+    }
+
+    it('returns the expected state', () => {
+      expect(reducer(undefined, action)).toEqual(expected)
+    })
+  })
+
+  describe('given a previous state', () => {
+    const state = {
+      ...INITIAL_STATE,
+      tx: '0x12345',
+      block: { hash: '0x0' }
+    }
+    const expected = {
+      ...state,
+      error,
+      loading: false,
+      isMining: false
     }
 
     it('returns the expected state', () => {
