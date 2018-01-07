@@ -6,18 +6,22 @@ import { Form, FormGroup, Col, Button } from 'react-bootstrap'
 
 import { ZERO_ADDRESS } from '../../constants'
 
+import verifyKYC from './verifyKYC'
 import unverifyKYC from './unverifyKYC'
 
 const KYCVerification = ({
+  doVerifyKYC,
   doUnverifyKYC,
   isMining,
+  verifying,
   unverifying,
+  verifyButtonLabel,
   unverifyButtonLabel,
   error,
   address
 }) => (
   <Form className="form-horizontal" id="kyc-verification">
-    <h3>KYC Rejection</h3>
+    <h3>KYC Verification</h3>
     <FormGroup className={error ? 'has-error' : null}>
       <Col xs={3}>
         <input
@@ -25,14 +29,25 @@ const KYCVerification = ({
           name="address"
           placeholder={ZERO_ADDRESS}
           defaultValue={address}
-          disabled={unverifying || isMining}
+          disabled={unverifying || verifying || isMining}
         />
       </Col>
       <Col xs={3}>
         <Button
+          bsStyle="success"
+          onClick={doVerifyKYC}
+          disabled={unverifying || verifying || isMining}
+        >
+          {verifyButtonLabel}
+        </Button>
+      </Col>
+    </FormGroup>
+    <FormGroup>
+      <Col xs={3} xsOffset={3}>
+        <Button
           bsStyle="danger"
           onClick={doUnverifyKYC}
-          disabled={unverifying || isMining}
+          disabled={unverifying || verifying || isMining}
         >
           {unverifyButtonLabel}
         </Button>
@@ -43,17 +58,22 @@ const KYCVerification = ({
 )
 
 KYCVerification.propTypes = {
+  doVerifyKYC: PropTypes.func.isRequired,
   doUnverifyKYC: PropTypes.func.isRequired,
+  verifying: PropTypes.bool,
   unverifying: PropTypes.bool,
   isMining: PropTypes.bool,
+  verifyButtonLabel: PropTypes.string,
   unverifyButtonLabel: PropTypes.string,
   error: PropTypes.string,
   address: PropTypes.string
 }
 
 KYCVerification.defaultPropTypes = {
+  verifying: false,
   unverifying: false,
   isMining: false,
+  verifyButtonLabel: 'Approve KYC',
   unverifyButtonLabel: 'Reject KYC',
   error: null,
   address: null
@@ -62,12 +82,16 @@ KYCVerification.defaultPropTypes = {
 const mapStateToProps = ({ kyc, mining: { isMining } }) => ({
   ...kyc,
   isMining,
+  verifyButtonLabel: kyc.verifying
+    ? 'Approving KYC'
+    : KYCVerification.defaultPropTypes.verifyButtonLabel,
   unverifyButtonLabel: kyc.unverifying
     ? 'Rejecting KYC'
     : KYCVerification.defaultPropTypes.unverifyButtonLabel
 })
 
 const mapDispatchToProps = dispatch => ({
+  doVerifyKYC: evt => dispatch(verifyKYC(evt.target.form.address.value)),
   doUnverifyKYC: evt => dispatch(unverifyKYC(evt.target.form.address.value))
 })
 
