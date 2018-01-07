@@ -9,6 +9,7 @@ import blockchainAction from '../../utils/blockchainAction'
 import mining from '../../utils/mining'
 import txSucceeded from '../../utils/txSucceeded'
 import TxError from '../../utils/TxError'
+import seriesOfPromises from '../../utils/seriesOfPromises'
 
 import { ETH_PROVIDER_URL, CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 import { MINING_STOP } from '../Mining/actions'
@@ -38,34 +39,34 @@ const handler = async ({
     address
   )
 
-  return Promise.all(
-    data.map(async item => {
-      const { beneficiary, tokensAllocated, halfVesting } = item
-      dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD, item))
-      try {
-        const tx = await signTx(
-          'addPrecommitment',
-          beneficiary,
-          BigNumber(tokensAllocated),
-          halfVesting
-        )
-        dispatch(getMiningData(tx))
-        console.debug('addPrecommitment tx', tx)
-        const result = await mining(tx)
-        console.debug('mining result', result)
-        dispatch(makeAction(MINING_STOP, result))
-        const receipt = await eth.getTransactionReceipt(tx)
-        if (!txSucceeded(receipt))
-          throw new TxError(`Transaction failed.`, receipt)
+  const addItem = async item => {
+    const { beneficiary, tokensAllocated, halfVesting } = item
+    dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD, item))
+    try {
+      const tx = await signTx(
+        'addPrecommitment',
+        beneficiary,
+        BigNumber(tokensAllocated),
+        halfVesting
+      )
+      dispatch(getMiningData(tx))
+      console.debug('addPrecommitment tx', tx)
+      const result = await mining(tx)
+      console.debug('mining result', result)
+      dispatch(makeAction(MINING_STOP, result))
+      const receipt = await eth.getTransactionReceipt(tx)
+      if (!txSucceeded(receipt))
+        throw new TxError(`Transaction failed.`, receipt)
 
-        dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD_SUCCESS, item))
-        return tx
-      } catch (err) {
-        dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD_FAIL, err.message))
-        throw err
-      }
-    })
-  )
+      dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD_SUCCESS, item))
+      return tx
+    } catch (err) {
+      dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD_FAIL, err.message))
+      throw err
+    }
+  }
+
+  return seriesOfPromises(data.map(addItem))
 }
 
 const addPrecommitments = data =>
