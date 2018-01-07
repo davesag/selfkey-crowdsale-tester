@@ -75,7 +75,6 @@ CrowdsaleData.propTypes = {
   endTime: PropTypes.number,
   tokensPurchased: PropTypes.shape(bigNumberShape),
   foundationBalance: PropTypes.shape(bigNumberShape),
-  foundersBalance: PropTypes.shape(bigNumberShape),
   walletBalance: PropTypes.shape(bigNumberShape)
 }
 
@@ -87,7 +86,6 @@ CrowdsaleData.defaultPropTypes = {
   endTime: null,
   tokensPurchased: null,
   foundationBalance: null,
-  foundersBalance: null,
   walletBalance: null
 }
 
