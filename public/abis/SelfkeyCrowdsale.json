@@ -1,19 +1,5 @@
 [
   {
-    "constant": true,
-    "inputs": [],
-    "name": "timelockFounders1",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "constant": false,
     "inputs": [
       {
@@ -28,15 +14,6 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [],
-    "name": "releaseLockFounders1",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [],
     "name": "SALE_CAP",
@@ -44,6 +21,48 @@
       {
         "name": "",
         "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "founders1Timelock2",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "FOUNDERS2_TOKENS_VESTED",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "founders1Timelock1",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
       }
     ],
     "payable": false,
@@ -72,6 +91,20 @@
       {
         "name": "",
         "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "FOUNDERS_POOL_ADDR_1",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
       }
     ],
     "payable": false,
@@ -114,20 +147,6 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "LEGAL_EXPENSES_TOKENS",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
     "name": "endTime",
     "outputs": [
       {
@@ -137,6 +156,15 @@
     ],
     "payable": false,
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "releaseLockLegalExpenses",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -225,11 +253,11 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "FOUNDERS_POOL_ADDR",
+    "name": "TOTAL_SUPPLY_CAP",
     "outputs": [
       {
         "name": "",
-        "type": "address"
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -239,7 +267,7 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "TOTAL_SUPPLY_CAP",
+    "name": "FOUNDERS1_TOKENS_VESTED_2",
     "outputs": [
       {
         "name": "",
@@ -257,6 +285,20 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "COMMUNITY_POOL_TOKENS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -290,11 +332,11 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "FOUNDERS_TOKENS",
+    "name": "PRECOMMITMENT_VESTING_SECONDS",
     "outputs": [
       {
         "name": "",
-        "type": "uint256"
+        "type": "uint64"
       }
     ],
     "payable": false,
@@ -313,21 +355,7 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "timelockFounders2",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "FOUNDERS_TOKENS_VESTED_2",
+    "name": "LEGAL_EXPENSES_2_TOKENS",
     "outputs": [
       {
         "name": "",
@@ -355,6 +383,20 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "LEGAL_EXPENSES_1_TOKENS_VESTED",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "goalReached",
     "outputs": [
       {
@@ -364,6 +406,15 @@
     ],
     "payable": false,
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "releaseFirstLockFounders1",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -411,30 +462,11 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "FOUNDERS_TOKENS_VESTED_1",
+    "name": "founders2Timelock",
     "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
       {
         "name": "",
         "type": "address"
-      }
-    ],
-    "name": "lockedBalance",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
       }
     ],
     "payable": false,
@@ -475,17 +507,73 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
+    "constant": true,
+    "inputs": [],
+    "name": "FOUNDERS1_TOKENS_VESTED_1",
+    "outputs": [
       {
-        "name": "participant",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "LEGAL_EXPENSES_ADDR_2",
+    "outputs": [
+      {
+        "name": "",
         "type": "address"
       }
     ],
-    "name": "claimRefund",
-    "outputs": [],
     "payable": false,
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "LEGAL_EXPENSES_1_TOKENS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "FOUNDERS_POOL_ADDR_2",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "COMMUNITY_POOL_ADDR",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -496,7 +584,7 @@
         "type": "address"
       }
     ],
-    "name": "rejectKYC",
+    "name": "claimRefund",
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
@@ -533,6 +621,43 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "legalExpensesTimelock",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "LEGAL_EXPENSES_ADDR_1",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "releaseSecondLockFounders1",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "totalPurchased",
     "outputs": [
       {
@@ -548,20 +673,6 @@
     "constant": true,
     "inputs": [],
     "name": "TOKEN_PRICE_THOUSANDTH",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "lockedTotal",
     "outputs": [
       {
         "name": "",
@@ -589,6 +700,20 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "FOUNDERS1_TOKENS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "vault",
     "outputs": [
       {
@@ -604,20 +729,6 @@
     "constant": true,
     "inputs": [],
     "name": "token",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "LEGAL_EXPENSES_ADDR",
     "outputs": [
       {
         "name": "",
@@ -703,18 +814,6 @@
       }
     ],
     "name": "VerifiedKYC",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "participant",
-        "type": "address"
-      }
-    ],
-    "name": "RejectedKYC",
     "type": "event"
   },
   {

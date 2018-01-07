@@ -10,10 +10,8 @@ export const INITIAL_STATE = {
   isFinalized: null,
   startTime: null,
   endTime: null,
-  lockedTotal: null,
   tokensPurchased: null,
   foundationBalance: null,
-  foundersBalance: null,
   walletBalance: null
 }
 

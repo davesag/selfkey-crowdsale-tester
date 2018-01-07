@@ -66,9 +66,7 @@ describe('CROWDSALE_DATA_GET_SUCCESS', () => {
     startTime: now - 1,
     endTime: now + 1,
     tokensPurchased: '6.7340000000000000050247e+22',
-    lockedTotal: '1.554e+22',
     foundationBalance: '2.97e+27',
-    foundersBalance: '3.3e+26',
     walletBalance: '5.18e+22'
   }
   const action = makeAction(CROWDSALE_DATA_GET_SUCCESS, payload)
