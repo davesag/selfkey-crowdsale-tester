@@ -6,7 +6,6 @@ import { bigNumberShape } from '../../utils/shapes'
 import yesNoIfNotNull from '../../utils/yesNoIfNotNull'
 
 const CrowdsaleStats = ({
-  lockedTotal,
   tokensPurchased,
   isFinalized,
   foundationBalance,
@@ -16,8 +15,6 @@ const CrowdsaleStats = ({
   <dl className="dl-horizontal" id="crowdsale-stats">
     <dt>Tokens Purchased</dt>
     <dd>{stringIfNotNull(tokensPurchased)}</dd>
-    <dt>Locked Total</dt>
-    <dd>{stringIfNotNull(lockedTotal)}</dd>
     <dt>Foundation Balance</dt>
     <dd>{stringIfNotNull(foundationBalance)}</dd>
     <dt>Founders Balance</dt>
@@ -30,7 +27,6 @@ const CrowdsaleStats = ({
 )
 
 CrowdsaleStats.propTypes = {
-  lockedTotal: PropTypes.shape(bigNumberShape),
   tokensPurchased: PropTypes.shape(bigNumberShape),
   foundationBalance: PropTypes.shape(bigNumberShape),
   foundersBalance: PropTypes.shape(bigNumberShape),
@@ -39,7 +35,6 @@ CrowdsaleStats.propTypes = {
 }
 
 CrowdsaleStats.defaultProps = {
-  lockedTotal: null,
   tokensPurchased: null,
   foundationBalance: null,
   foundersBalance: null,
