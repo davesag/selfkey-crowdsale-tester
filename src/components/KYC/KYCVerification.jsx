@@ -6,13 +6,11 @@ import { Form, FormGroup, Col, Button } from 'react-bootstrap'
 
 import { ZERO_ADDRESS } from '../../constants'
 
-import verifyKYC from './verifyKYC'
 import unverifyKYC from './unverifyKYC'
 
 const KYCVerification = ({
   doUnverifyKYC,
   isMining,
-  verifying,
   unverifying,
   unverifyButtonLabel,
   error,
