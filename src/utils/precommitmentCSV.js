@@ -1,7 +1,7 @@
 const arrayToObject = ([beneficiary, tokensAllocated, halfVesting]) => ({
   beneficiary,
   tokensAllocated,
-  halfVesting: halfVesting === 'YES'
+  halfVesting: halfVesting.toLowerCase() === 'yes'
 })
 
 export const parse = data =>
@@ -15,7 +15,7 @@ export const parse = data =>
 const objectToArray = ({ beneficiary, tokensAllocated, halfVesting }) => [
   beneficiary,
   tokensAllocated,
-  halfVesting ? 'YES' : 'NO'
+  halfVesting ? 'yes' : 'no'
 ]
 
 export const toString = data =>

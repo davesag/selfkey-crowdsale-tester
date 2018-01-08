@@ -2,7 +2,7 @@ const now = () => new Date().getTime()
 
 const makePromise = (item, i) =>
   new Promise(resolve => {
-    setTimeout(() => resolve({ item, i, t: now() }), 1)
+    setTimeout(() => resolve({ item, i, t: now() }), 100)
   })
 
 describe('seriesOfPromises', () => {
