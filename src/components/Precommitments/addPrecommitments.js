@@ -9,7 +9,6 @@ import blockchainAction from '../../utils/blockchainAction'
 import mining from '../../utils/mining'
 import txSucceeded from '../../utils/txSucceeded'
 import TxError from '../../utils/TxError'
-import seriesOfPromises from '../../utils/seriesOfPromises'
 
 import { ETH_PROVIDER_URL, CROWDSALE_ADDRESS, ERRORS } from '../../constants'
 import { MINING_STOP } from '../Mining/actions'
@@ -66,7 +65,11 @@ const handler = async ({
     }
   }
 
-  return seriesOfPromises(data.map(addItem))
+  const result = []
+  for (let i = 0; i < data.length; i++) {
+    result.push(await addItem(data[i]))
+  }
+  return result
 }
 
 const addPrecommitments = data =>
