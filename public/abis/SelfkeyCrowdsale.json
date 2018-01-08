@@ -14,6 +14,15 @@
     "type": "function"
   },
   {
+    "constant": false,
+    "inputs": [],
+    "name": "releaseLockFounders1",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "constant": true,
     "inputs": [],
     "name": "SALE_CAP",
@@ -21,48 +30,6 @@
       {
         "name": "",
         "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "founders1Timelock2",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "FOUNDERS2_TOKENS_VESTED",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "founders1Timelock1",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
       }
     ],
     "payable": false,
@@ -91,20 +58,6 @@
       {
         "name": "",
         "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "FOUNDERS_POOL_ADDR_1",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
       }
     ],
     "payable": false,
@@ -156,6 +109,15 @@
     ],
     "payable": false,
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "releaseLockFoundation",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -244,11 +206,11 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "TOTAL_SUPPLY_CAP",
+    "name": "FOUNDERS_POOL_ADDR",
     "outputs": [
       {
         "name": "",
-        "type": "uint256"
+        "type": "address"
       }
     ],
     "payable": false,
@@ -258,7 +220,7 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "FOUNDERS1_TOKENS_VESTED_2",
+    "name": "TOTAL_SUPPLY_CAP",
     "outputs": [
       {
         "name": "",
@@ -309,6 +271,20 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "FOUNDATION_POOL_TOKENS_VESTED",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "TOKEN_DECIMALS",
     "outputs": [
       {
@@ -328,6 +304,20 @@
       {
         "name": "",
         "type": "uint64"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "FOUNDERS_TOKENS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -360,11 +350,11 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "startTime",
+    "name": "FOUNDERS_TOKENS_VESTED_2",
     "outputs": [
       {
         "name": "",
-        "type": "uint64"
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -374,11 +364,11 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "LEGAL_EXPENSES_1_TOKENS_VESTED",
+    "name": "startTime",
     "outputs": [
       {
         "name": "",
-        "type": "uint256"
+        "type": "uint64"
       }
     ],
     "payable": false,
@@ -397,15 +387,6 @@
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [],
-    "name": "releaseFirstLockFounders1",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -453,11 +434,11 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "founders2Timelock",
+    "name": "FOUNDERS_TOKENS_VESTED_1",
     "outputs": [
       {
         "name": "",
-        "type": "address"
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -500,20 +481,6 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "FOUNDERS1_TOKENS_VESTED_1",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
     "name": "LEGAL_EXPENSES_ADDR_2",
     "outputs": [
       {
@@ -533,20 +500,6 @@
       {
         "name": "",
         "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "FOUNDERS_POOL_ADDR_2",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
       }
     ],
     "payable": false,
@@ -579,6 +532,34 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "foundersTimelock1",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "foundersTimelock2",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -624,15 +605,6 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [],
-    "name": "releaseSecondLockFounders1",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [],
     "name": "totalPurchased",
@@ -640,6 +612,20 @@
       {
         "name": "",
         "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "foundationTimelock",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
       }
     ],
     "payable": false,
@@ -672,20 +658,6 @@
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "FOUNDERS1_TOKENS",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
     "type": "function"
   },
   {
