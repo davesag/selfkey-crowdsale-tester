@@ -11,6 +11,7 @@ import precommitment from '../components/Precommitment/reducer'
 import precommitments from '../components/Precommitments/reducer'
 import finalize from '../components/Finalize/reducer'
 import mining from '../components/Mining/reducer'
+import bulkKYC from '../components/BulkKYC/reducer'
 
 export default combineReducers({
   routing,
@@ -23,5 +24,6 @@ export default combineReducers({
   precommitment,
   precommitments,
   finalize,
-  mining
+  mining,
+  bulkKYC
 })
