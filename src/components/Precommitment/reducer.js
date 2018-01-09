@@ -16,9 +16,12 @@ const reducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action
   switch (type) {
     case PRECOMMITMENT_ADD: {
+      const [beneficiary, tokensAllocated, halfVesting] = payload
       return {
         ...INITIAL_STATE,
-        ...payload,
+        beneficiary,
+        tokensAllocated,
+        halfVesting,
         adding: true
       }
     }

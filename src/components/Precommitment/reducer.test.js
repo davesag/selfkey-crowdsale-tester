@@ -29,11 +29,18 @@ describe('unknown action', () => {
 })
 
 describe('PRECOMMITMENT_ADD', () => {
-  const action = makeAction(PRECOMMITMENT_ADD)
+  const beneficiary = '0x0'
+  const tokensAllocated = '1.63353146666667e+23'
+  const halfVesting = true
+  const payload = [beneficiary, tokensAllocated, halfVesting]
+  const action = makeAction(PRECOMMITMENT_ADD, payload)
 
   describe('given no state', () => {
     const expected = {
       ...INITIAL_STATE,
+      beneficiary,
+      tokensAllocated,
+      halfVesting,
       adding: true
     }
     it('returns the correct state', () => {
@@ -49,6 +56,9 @@ describe('PRECOMMITMENT_ADD', () => {
     const expected = {
       ...state,
       error: null,
+      beneficiary,
+      tokensAllocated,
+      halfVesting,
       adding: true
     }
 

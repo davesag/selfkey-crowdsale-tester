@@ -12,6 +12,8 @@ const mining = tx =>
     const check = setInterval(() => {
       eth.getTransactionByHash(tx, (err, result) => {
         if (err) {
+          console.error('getTransactionByHash', err)
+          console.debug('tx', tx)
           clearInterval(check)
           reject(err)
         } else {
