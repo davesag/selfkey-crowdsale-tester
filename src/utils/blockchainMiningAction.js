@@ -32,6 +32,7 @@ const blockchainMiningAction = (...params) => (action, handler) => {
           dispatch,
           state
         })
+        console.debug('tx', tx)
         dispatch(getMiningData(tx))
         const result = await mining(tx)
         console.debug('mining result', result)
