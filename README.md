@@ -36,6 +36,7 @@ The variables needed are:
 * `REACT_APP_CROWDSALE_ADDRESS` — The address of the `SelfKey Crowdsale` contract
 * `REACT_APP_TOKEN_ADDRESS` — The address of the `KEY` token
 * `REACT_APP_PRIVATE_KEY` — The private key of the contracts' owner (Note this is not really very secure to expose this within the app so we'll do this differently if we use this code for something real)
+* `# REACT_APP_CHAIN_ID` — `1` if `mainnet` or `3` if `ropsten` - see [eip-155](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md).
 
 ### Start it
 
