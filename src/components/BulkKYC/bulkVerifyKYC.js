@@ -1,7 +1,7 @@
 import Eth from 'ethjs-query'
 import HttpProvider from 'ethjs-provider-http'
 
-import signedTransaction from '../../utils/signedTransaction'
+import contractAccess from '../../utils/contractAccess'
 import makeAction from '../../utils/actionMaker'
 import blockchainAction from '../../utils/blockchainAction'
 import mining from '../../utils/mining'
@@ -25,21 +25,17 @@ const eth = new Eth(new HttpProvider(ETH_PROVIDER_URL))
 const handler = async ({
   params: [data],
   dispatch,
-  state: { owner: { address, isOwner }, contract: { SelfkeyCrowdsale } }
+  state: { owner: { owner, isOwner }, contract: { SelfkeyCrowdsale } }
 }) => {
   if (!isOwner) throw new Error(notCrowdsaleOwner)
   if (!data || data === '') throw new Error(invalidData)
 
-  const signTx = signedTransaction(
-    SelfkeyCrowdsale.abi,
-    CROWDSALE_ADDRESS,
-    address
-  )
+  const crowdsale = contractAccess(CROWDSALE_ADDRESS, SelfkeyCrowdsale.abi)
 
   const verifyAddress = async address => {
     dispatch(makeAction(KYC_SINGLE_APPROVE, address))
     try {
-      const tx = await signTx('verifyKYC', address)
+      const tx = await crowdsale.verifyKYC(address, { from: owner })
       dispatch(getMiningData(tx))
       console.debug('verifyKYC tx', tx)
       const result = await mining(tx)

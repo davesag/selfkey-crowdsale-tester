@@ -2,7 +2,7 @@ import Eth from 'ethjs-query'
 import HttpProvider from 'ethjs-provider-http'
 import BigNumber from 'bignumber.js'
 
-import signedTransaction from '../../utils/signedTransaction'
+import contractAccess from '../../utils/contractAccess'
 import makeAction from '../../utils/actionMaker'
 import { parse } from '../../utils/precommitmentCSV'
 import blockchainAction from '../../utils/blockchainAction'
@@ -27,26 +27,22 @@ const eth = new Eth(new HttpProvider(ETH_PROVIDER_URL))
 const handler = async ({
   params: [data],
   dispatch,
-  state: { owner: { address, isOwner }, contract: { SelfkeyCrowdsale } }
+  state: { owner: { owner, isOwner }, contract: { SelfkeyCrowdsale } }
 }) => {
   if (!isOwner) throw new Error(notCrowdsaleOwner)
   if (!data || data === '') throw new Error(invalidData)
 
-  const signTx = signedTransaction(
-    SelfkeyCrowdsale.abi,
-    CROWDSALE_ADDRESS,
-    address
-  )
+  const crowdsale = contractAccess(CROWDSALE_ADDRESS, SelfkeyCrowdsale.abi)
 
   const addItem = async item => {
     const { beneficiary, tokensAllocated, halfVesting } = item
     dispatch(makeAction(PRECOMMITMENT_SINGLE_ADD, item))
     try {
-      const tx = await signTx(
-        'addPrecommitment',
+      const tx = await crowdsale.addPrecommitment(
         beneficiary,
         BigNumber(tokensAllocated),
-        halfVesting
+        halfVesting,
+        { from: owner }
       )
       dispatch(getMiningData(tx))
       console.debug('addPrecommitment tx', tx)

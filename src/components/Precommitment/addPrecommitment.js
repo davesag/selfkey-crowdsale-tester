@@ -1,4 +1,4 @@
-import signedTransaction from '../../utils/signedTransaction'
+import contractAccess from '../../utils/contractAccess'
 import BigNumber from 'bignumber.js'
 import blockchainMiningAction from '../../utils/blockchainMiningAction'
 
@@ -14,7 +14,7 @@ const {
 const handler = async ({
   params,
   dispatch,
-  state: { owner: { address, isOwner }, contract: { SelfkeyCrowdsale } }
+  state: { owner: { owner, isOwner }, contract: { SelfkeyCrowdsale } }
 }) => {
   const [beneficiary, tokensAllocated] = params
 
@@ -22,13 +22,9 @@ const handler = async ({
   if (!beneficiary || beneficiary === '') throw new Error(invalidAddress)
   if (tokensAllocated.lte(0)) throw new Error(amountMustBeGreaterThanZero)
 
-  const signTx = signedTransaction(
-    SelfkeyCrowdsale.abi,
-    CROWDSALE_ADDRESS,
-    address
-  )
+  const crowdsale = contractAccess(CROWDSALE_ADDRESS, SelfkeyCrowdsale.abi)
 
-  const tx = await signTx('addPrecommitment', ...params)
+  const tx = await crowdsale.addPrecommitment(...params, { from: owner })
   console.debug('addPrecommitment tx', tx)
   return tx
 }

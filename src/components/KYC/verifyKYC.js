@@ -1,4 +1,4 @@
-import signedTransaction from '../../utils/signedTransaction'
+import contractAccess from '../../utils/contractAccess'
 import blockchainMiningAction from '../../utils/blockchainMiningAction'
 
 import { KYC_VERIFY } from './actions'
@@ -10,19 +10,15 @@ const { invalidAddress, notCrowdsaleOwner } = ERRORS
 const handler = async ({
   params: [addressToVerify],
   dispatch,
-  state: { owner: { address, isOwner }, contract: { SelfkeyCrowdsale } }
+  state: { owner: { owner, isOwner }, contract: { SelfkeyCrowdsale } }
 }) => {
   if (!addressToVerify || addressToVerify === '')
     throw new Error(invalidAddress)
   if (!isOwner) throw new Error(notCrowdsaleOwner)
 
-  const signTx = signedTransaction(
-    SelfkeyCrowdsale.abi,
-    CROWDSALE_ADDRESS,
-    address
-  )
+  const crowdsale = contractAccess(CROWDSALE_ADDRESS, SelfkeyCrowdsale.abi)
 
-  const tx = await signTx('verifyKYC', addressToVerify)
+  const tx = crowdsale.verifyKYC(addressToVerify, { from: owner })
   console.debug('verifyKYC tx', tx)
   return tx
 }
