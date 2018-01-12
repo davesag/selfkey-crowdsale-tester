@@ -1,4 +1,4 @@
-import signedTransaction from '../../utils/signedTransaction'
+import contractAccess from '../../utils/contractAccess'
 import blockchainMiningAction from '../../utils/blockchainMiningAction'
 
 import { CROWDSALE_FINALIZE } from './actions'
@@ -9,17 +9,13 @@ const { notCrowdsaleOwner } = ERRORS
 
 const handler = async ({
   dispatch,
-  state: { owner: { address, isOwner }, contract: { SelfkeyCrowdsale } }
+  state: { owner: { owner, isOwner }, contract: { SelfkeyCrowdsale } }
 }) => {
   if (!isOwner) throw new Error(notCrowdsaleOwner)
 
-  const signTx = signedTransaction(
-    SelfkeyCrowdsale.abi,
-    CROWDSALE_ADDRESS,
-    address
-  )
+  const crowdsale = contractAccess(CROWDSALE_ADDRESS, SelfkeyCrowdsale.abi)
 
-  const tx = await signTx('finalize')
+  const tx = await crowdsale.finalize({ from: owner })
   console.debug('finalise tx', tx)
   return tx
 }

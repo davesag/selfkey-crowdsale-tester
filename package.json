@@ -15,7 +15,6 @@
     "ethjs-abi": "^0.2.1",
     "ethjs-provider-http": "^0.1.6",
     "ethjs-query": "^0.3.2",
-    "ethjs-signer": "^0.1.1",
     "font-awesome": "^4.7.0",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
