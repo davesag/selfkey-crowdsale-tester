@@ -1,0 +1,87 @@
+{
+  "name": "crowdsale-tester",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Website for testing the Selfkey Crowdsale",
+  "engines": {
+    "node": "9.4.0",
+    "npm": "5.6.0"
+  },
+  "dependencies": {
+    "bignumber.js": "^5.0.0",
+    "bootstrap": "^3.3.7",
+    "bootstrap-sass": "^3.3.7",
+    "ethjs": "^0.3.3",
+    "ethjs-abi": "^0.2.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "node-sass-chokidar": "0.0.3",
+    "prettier": "^1.10.2",
+    "react": "^16.1.1",
+    "react-bootstrap": "^0.32.0",
+    "react-dom": "^16.1.1",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-bootstrap": "^0.24.4",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.8",
+    "react-scripts": "1.1.0",
+    "react-web3": "^0.4.4",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "scripts": {
+    "analyse": "source-map-explorer build/static/js/main.*",
+    "analyze": "npm run analyse",
+    "precommit": "lint-staged",
+    "prettier": "prettier --single-quote --no-semi --write 'src/**/*.{js,jsx,json,css}'",
+    "lint": "eslint 'src/**/*.{js,jsx}'",
+    "start-js": "react-scripts start",
+    "build-css": "node-sass-chokidar --include-path ./bootstrap --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./bootstrap --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build",
+    "test": "npm run build-css && react-scripts test --env=jsdom",
+    "test:coverage": "npm test -- --coverage",
+    "test:debug": "npm run build-css && react-scripts --inspect-brk test --runInBand --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --singlequote --no-semi --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!src/index.js",
+      "!src/registerServiceWorker.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  },
+  "devDependencies": {
+    "eslint": "^4.15.0",
+    "eslint-config-prettier": "^2.8.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-jest": "^21.6.2",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mkdirp": "^0.5.1",
+    "npm-run-all": "^4.1.2",
+    "rimraf": "^2.6.2",
+    "source-map-explorer": "^1.5.0",
+    "yamljs": "^0.3.0"
+  }
+}

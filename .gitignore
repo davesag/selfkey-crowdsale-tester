@@ -29,9 +29,6 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
-
 # Dependency directories
 node_modules/
 jspm_packages/
@@ -55,5 +52,15 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+.env.local
 
+# Built artifacts
+build
+/src/**/*.css
+
+# macOS desktop metadata
+.DS_Store
+**/.DS_Store
+
+# Other private stuff
+**/*.pem
