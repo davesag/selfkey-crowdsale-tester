@@ -7,7 +7,6 @@ import { Web3Provider } from 'react-web3'
 import registerServiceWorker from './registerServiceWorker'
 import store, { history } from './store'
 
-import '../node_modules/font-awesome/css/font-awesome.min.css'
 import './index.css'
 
 import App from './App.jsx'

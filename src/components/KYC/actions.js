@@ -1,3 +1,0 @@
-export const KYC_VERIFY = 'KYC_VERIFY'
-export const KYC_VERIFY_SUCCESS = 'KYC_VERIFY_SUCCESS'
-export const KYC_VERIFY_FAIL = 'KYC_VERIFY_FAIL'

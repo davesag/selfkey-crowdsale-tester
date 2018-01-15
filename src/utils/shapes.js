@@ -1,9 +1,8 @@
-import { arrayOf, oneOf, string, number } from 'prop-types'
+import { arrayOf, oneOf, number } from 'prop-types'
 
 export const navigationShape = {
   lhs: {
-    kyc: string.isRequired,
-    precommitments: string.isRequired
+    // put nav items here
   },
   rhs: {
     // put nav items here
@@ -14,8 +13,4 @@ export const bigNumberShape = {
   s: oneOf([1]), // must be positive
   e: number.isRequired,
   c: arrayOf(number).isRequired
-}
-
-export const blockShape = {
-  hash: string.isRequired
 }

@@ -2,8 +2,7 @@ import { TITLE_SET } from './actions'
 
 export const INITIAL_STATE = {
   lhs: {
-    kyc: 'KYC',
-    precommitments: 'Precommitments'
+    // add nav items here
   },
   rhs: {
     // add nav items here
