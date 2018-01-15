@@ -112,6 +112,39 @@
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isVerifier",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_startTime",
+        "type": "uint64"
+      }
+    ],
+    "name": "setStartTime",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "constant": false,
     "inputs": [],
     "name": "releaseLockFoundation",
@@ -432,6 +465,20 @@
     "type": "function"
   },
   {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "addVerifier",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "constant": true,
     "inputs": [],
     "name": "FOUNDERS_TOKENS_VESTED_1",
@@ -566,6 +613,20 @@
     "constant": false,
     "inputs": [
       {
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "removeVerifier",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
         "name": "participant",
         "type": "address"
       }
@@ -607,6 +668,20 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "FOUNDATION_POOL_ADDR_VEST",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "totalPurchased",
     "outputs": [
       {
@@ -616,6 +691,20 @@
     ],
     "payable": false,
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_endTime",
+        "type": "uint64"
+      }
+    ],
+    "name": "setEndTime",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
