@@ -36,7 +36,6 @@ The variables needed are:
 * `REACT_APP_ETH_PROVIDER_URL` — The url of the `HttpProvider` (defaults to `http://localhost:8545`)
 * `REACT_APP_CROWDSALE_ADDRESS` — The address of the `SelfKey Crowdsale` contract
 * `REACT_APP_TOKEN_ADDRESS` — The address of the `KEY` token
-* `# REACT_APP_CHAIN_ID` — `1` if `mainnet` or `3` if `ropsten` else defaults to `1337` for localhost or a geth node - see [eip-155](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md).
 
 ### Start it
 
